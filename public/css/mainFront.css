@@ -1,0 +1,95 @@
+body{
+    background-color:#fff;
+    color:rgba(0, 0, 0, 0.8);
+}
+
+/*--------MENU--------*/
+.navbar{
+    max-width: 1200px;
+    background-color: #fff;
+    margin: auto;
+    border-bottom: 1px solid gray;
+}
+.navbar-nav .active{
+    color: cyan !important;
+    border-bottom: 2px solid chartreuse;
+}
+.navbar .navbar-nav{
+    margin-left: auto !important;
+}
+.nav-link{
+    color:#000 !important;
+    font-size: 20px;
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+/*--------MAIN-PAGE--------*/
+#main-page{
+    max-width: 1200px;
+    margin: auto;
+}
+#main-page h2{
+    margin: 20px 0;
+    color: cyan;
+}
+#main-page section{
+    padding-bottom: 30px;
+    border-bottom: 1px solid gray;
+}
+
+/*-----------MOTTO----------*/
+#motto{
+    text-align: center;
+}
+#motto .container {
+    background:url('../img/background_1.jpg') no-repeat right bottom;
+    background-size: auto 100%;
+}
+#motto h1{
+    margin: 20px 0;
+    color: cyan;
+}
+
+#motto .col-sm-6{
+    padding-bottom: 20px;
+}
+
+/*-----------OFFER----------*/
+#offer{
+    margin-top: 50px;
+    padding:20px 30px;
+    text-align: center;
+
+}
+#offer .container{
+    padding-top: 30px;
+}
+#offer i{
+    font-size: 50px;
+    color: cyan;
+}
+#offer .col-sm-4{
+    padding-top: 10px;
+}
+
+/*--------CONTACT--------*/
+#contact header{
+    padding:50px 0;
+    text-align: center;
+}
+#contact{
+    border-bottom: none !important;
+    margin-bottom: 50px;
+}
+
+/*--------FOOTER--------*/
+footer{
+    background-color: gray; 
+}
+
+
+/*--------RECIPE----------*/
+#recipe-page img{
+    width:100%;
+}
