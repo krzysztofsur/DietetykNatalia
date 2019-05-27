@@ -145,9 +145,7 @@
                     });
 
 
-        
-                    
-        
+
                     function edit_blog(id_blog) {
                         $.ajax({
                             method: "POST",
