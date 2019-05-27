@@ -28,7 +28,6 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        //$recipes = Recipes::all();
         $recipes = DB::table('recipes')->orderBy('updated_at', 'desc')->paginate(10); 
         return view('Recipes.index',  ['recipes' => $recipes]);
     }
@@ -55,7 +54,6 @@ class RecipesController extends Controller
             
             if($request->hasFile('file')){
                 $destinationPath = 'upload';
-                //$request->file->store('public/upload');
                 $file = $request->file('file');
                 $FullName = explode('.', $file->getClientOriginalName());
                 $extension = end($FullName); 
@@ -73,7 +71,7 @@ class RecipesController extends Controller
             }
             
         }
-        
+
     }
 
     /**
@@ -118,7 +116,8 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        $recipe = Recipes::find($id); 
-        $recipe->delete();
+        return $id;
+        //$recipe = Recipes::find($id); 
+        //$recipe->delete();
     }
 }

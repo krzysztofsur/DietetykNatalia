@@ -45,7 +45,7 @@
                 <i class="fas fa-arrow-left"></i>
             </div>
             <div class="sidebar-header">
-                <h3>Dietetyk <br> Natalia</h3>
+                <h3>{{ config('app.name', 'Laravel') }}</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -65,7 +65,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="/recipes">recipes</a>
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>

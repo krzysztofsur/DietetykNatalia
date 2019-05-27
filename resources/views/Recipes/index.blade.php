@@ -81,6 +81,9 @@
     $(document).ready(function(){
 
 
+
+
+        
         $("#id_blog").val(0);
 
 
