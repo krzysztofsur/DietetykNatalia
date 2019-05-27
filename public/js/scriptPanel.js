@@ -3,14 +3,16 @@ function delete_blog(id_blog) {
     if(res) {
         $.ajax({
             method: "DELETE",
-            url: "recipes/"+id_blog,
+            url: "/recipes/"+id_blog,
         })
         .done(function( msg ) {
             toastr.success('Zostało usunięte');
             //show_products();
+            console.log(msg);
         })
-        .fail(function() {
+        .fail(function( msg) {
             toastr.error('Wystąpił błąd');
+            console.log(msg);
         });
     }
 }
