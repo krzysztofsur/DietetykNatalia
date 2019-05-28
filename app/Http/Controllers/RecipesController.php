@@ -110,16 +110,19 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
+    //
+    }
+    public function editpost(Request $request)
+    {
         if ($request->ajax()) {
-
             $request->validate([
                 'title' => 'required|min:5|max:255',
                 'short' => 'required|min:20|max:255',
                 'description' => 'required|min:20',
             ]);
-            $recipes = App\Recipes::find($request->id);
+            $recipe = Recipes::where('id', $request->id)->first();
 
-            if ($request->change == true) {
+            if ($request->hasFile('file')) {
                 $destinationPath = 'upload';
                 $file = $request->file('file');
                 $FullName = explode('.', $file->getClientOriginalName());
@@ -127,36 +130,14 @@ class RecipesController extends Controller
                 $file_name = $FullName[0];
                 $path = $file_name . rand(10, 999) . '.' . $extension;
                 $file->move($destinationPath, $path);
-                $recipes->photo = 'upload/' . $path;
+                $recipe->photo = 'upload/' . $path;
                 //return "add photo";
-            }
-            
-            $recipes->category = $request->category;
-            $recipes->title = $request->title;
-            $recipes->short = $request->short;
-            $recipes->description = $request->description;
-            $recipes->save();
-            return $id;
-        }
-    }
-    public function editpost(Request $request)
-    {
-        if ($request->ajax()) {
-
-            $request->validate([
-                'title' => 'required|min:5|max:255',
-                'short' => 'required|min:20|max:255',
-                'description' => 'required|min:20',
-            ]);
-            $recipes = Recipes::find($request->id);
-
-            
-            
-            $recipes->category = $request->category;
-            $recipes->title = $request->title;
-            $recipes->short = $request->short;
-            $recipes->description = $request->description;
-            $recipes->save();
+            };
+            $recipe->category = $request->category;
+            $recipe->title = $request->title;
+            $recipe->short = $request->short;
+            $recipe->description = $request->description;
+            $recipe->save();
             return $request->id;
         }
     }

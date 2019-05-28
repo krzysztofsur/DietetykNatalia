@@ -15,6 +15,7 @@ class Measurement extends Migration
     {
         Schema:: create('measurements', function (Blueprint $table){
             $table->increments('id');
+            $table->integer('userid');
             $table->double('weight', 8, 2);
             $table->double('height', 8, 2);
             $table->double('waist', 8, 2);

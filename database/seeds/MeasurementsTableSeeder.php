@@ -13,6 +13,7 @@ class MeasurementsTableSeeder extends Seeder
     public function run()
     {
         $measurements = new Measurement();
+        $measurements -> userid = 2;
         $measurements -> weight = 164.5;
         $measurements -> height = 52;
         $measurements -> waist = 1;

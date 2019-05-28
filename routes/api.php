@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register','Api\AuthController@register');
 Route::post('/login','Api\AuthController@login');
 Route::get('/test','Api\AuthController@test');
-Route::post('/personaldata','Api\PersonalDataController@edit');
-Route::get('/personaldata','Api\PersonalDataController@show');
-Route::post('/measurement','Api\MeasurementController@edit');
-Route::post('/measurement','Api\MeasurementController@show');
+Route::post('personaldata/{id}', 'Api\PersonalDataController@update');
+Route::get('personaldata/{id}', 'Api\PersonalDataController@show');
+Route::post('measurement/{id}', 'Api\MeasurementController@update');
+Route::get('measurement/{id}', 'Api\MeasurementController@show');

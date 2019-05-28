@@ -21,6 +21,15 @@ class PersonalDataTableSeeder extends Seeder
         $personaldata -> sex = 'female';
         $personaldata -> birthdate = '2011-11-11';
         $personaldata -> save();
-            
+
+        $personaldata = new PersonalData();
+        $personaldata -> userid = '2';
+        $personaldata -> firstname = 'Katka2';
+        $personaldata -> lastname = 'Gaweł2';
+        $personaldata -> phone = '111111111';
+        $personaldata -> email = 'katkagawel@example.pl';
+        $personaldata -> sex = 'female';
+        $personaldata -> birthdate = '2011-11-11';
+        $personaldata -> save();
     }
 }
