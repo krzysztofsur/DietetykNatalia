@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
         //$this->call(RecipesTableSeeder::class);
         //$this->call(PersonalDataTableSeeder::class);
         //$this->call(MeasurementsTableSeeder::class);
-        $this->call(DiaryTableSeeder::class);
+        //$this->call(DiaryTableSeeder::class);
+        //$this->call(IllnessTableSeeder::class);
+        //$this->call(AllergiesTableSeeder::class);
+        $this->call(IllnessAndAllergiesTableSeeder::class);
+
     }
 }

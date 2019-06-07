@@ -26,4 +26,5 @@ Route::post('measurement/{id}', 'Api\MeasurementController@update');
 Route::get('measurement/{id}', 'Api\MeasurementController@show');
 Route::post('diary/{id}', 'Api\DiaryController@update');
 Route::get('diary/{id}', 'Api\DiaryController@show');
-
+Route::post('illnessandallergies/{id}', 'Api\IllnessAndAllergiesController@update');
+Route::get('illnessandallergies/{id}', 'Api\IllnessAndAllergiesController@show');
