@@ -24,3 +24,6 @@ Route::post('personaldata/{id}', 'Api\PersonalDataController@update');
 Route::get('personaldata/{id}', 'Api\PersonalDataController@show');
 Route::post('measurement/{id}', 'Api\MeasurementController@update');
 Route::get('measurement/{id}', 'Api\MeasurementController@show');
+Route::post('diary/{id}', 'Api\DiaryController@update');
+Route::get('diary/{id}', 'Api\DiaryController@show');
+
