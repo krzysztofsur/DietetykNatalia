@@ -124,10 +124,7 @@
                     });
             });
 
-
-        
         $("#id_blog").val(0);
-
 
                     $('#add_post').on('click', function(e) {
                         e.preventDefault();
@@ -174,16 +171,19 @@
                             form_data.append("file",property);
                             form_data.append("change",change);
                             form_data.append("id",id);
+                            form_data.append("_method",'PUT');
                             $.ajax({
                                 method: "POST",
-                                url: "/recipes/editpost",
+                                url: "/recipes/"+id,
                                 data: form_data,
                                 contentType:false,
                                 cache:false,
                                 processData:false,
                             })
                             .done(function( msg ) {
-                                console.log(msg)
+                                //console.log(msg);
+                                toastr.success('Post został zaktualizowany');
+                                show_products();
                             })
                             .fail(function() {
                                 toastr.error('Wystąpił błąd');

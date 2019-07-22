@@ -41,7 +41,6 @@ class RecipesController extends Controller
     {
         $recipes = DB::table('recipes')->orderBy('updated_at', 'desc')->paginate(10);
         return response(['recipes' => $recipes]);
-        //return 'dzialaa';
     }
 
     /**
@@ -110,10 +109,6 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-    //
-    }
-    public function editpost(Request $request)
-    {
         if ($request->ajax()) {
             $request->validate([
                 'title' => 'required|min:5|max:255',
@@ -131,14 +126,12 @@ class RecipesController extends Controller
                 $path = $file_name . rand(10, 999) . '.' . $extension;
                 $file->move($destinationPath, $path);
                 $recipe->photo = 'upload/' . $path;
-                //return "add photo";
             };
             $recipe->category = $request->category;
             $recipe->title = $request->title;
             $recipe->short = $request->short;
             $recipe->description = $request->description;
             $recipe->save();
-            return $request->id;
         }
     }
 

@@ -19,4 +19,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('recipes', 'RecipesController');
-Route::post('/recipes/editpost', 'RecipesController@editpost');
