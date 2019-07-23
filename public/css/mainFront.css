@@ -1,5 +1,6 @@
 body{
-    background-color:#fff;
+    background-color:currentColor;
+/*#fff*/
     color:rgba(0, 0, 0, 0.8);
 }
 

@@ -35,8 +35,9 @@
             <div class="collapse navbar-collapse" id="MainMenu">
                 <div class="navbar-nav float-right text-right pr-3">
                     <a class="nav-item nav-link <?= $activeMainMenu == 'home' ? 'active' : ''?>" href="{{ url('/') }}">Home</a>
-                    <a class="nav-item nav-link" href="#">O Nas</a>
-                    <a class="nav-item nav-link" href="#">Kontkt</a>
+                    <a class="nav-item nav-link" href="#">About Us</a>
+                    <a class="nav-item nav-link <?= $activeMainMenu == 'request' ? 'active' : ''?>" href="/userRequest">Request</a>
+                    <a class="nav-item nav-link <?= $activeMainMenu == 'contact' ? 'active' : ''?>" href="/contact">Contakt</a>
                     <a class="nav-item nav-link <?= $activeMainMenu == 'recipe' ? 'active' : ''?>" href="{{ url('/home') }}">Blog</a>
                 </div>
             </div>
@@ -55,6 +56,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.js') }}"></script>
 <script>
 
 </script>

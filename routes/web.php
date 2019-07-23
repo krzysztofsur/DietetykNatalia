@@ -12,10 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('mainPage');
+    return view('FrontPage/mainPage');
 });
+Route::get('/contact', 'FrontPageController@contact');
+Route::get('/userRequest', 'FrontPageController@userRequest');
+Route::post('/userRequestSend', 'FrontPageController@userRequestSend');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('recipes', 'RecipesController');

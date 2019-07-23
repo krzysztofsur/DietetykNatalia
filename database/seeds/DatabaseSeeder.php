@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(DiaryTableSeeder::class);
         //$this->call(IllnessTableSeeder::class);
         //$this->call(AllergiesTableSeeder::class);
-        $this->call(IllnessAndAllergiesTableSeeder::class);
+        //$this->call(IllnessAndAllergiesTableSeeder::class);
+        $this->call(UserRequestTableSeeder::class);
 
     }
 }
