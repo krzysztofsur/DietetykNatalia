@@ -19,7 +19,7 @@ class UserRequestTableSeeder extends Seeder
         $table->email='mail@mail.pl'; 
         $table->fname='imie'; 
         $table->lname='nazwisko'; 
-        $table->message='chce żyć :D'; 
+        $table->message='daj żyć :D'; 
         $table->save();
     }
 }
