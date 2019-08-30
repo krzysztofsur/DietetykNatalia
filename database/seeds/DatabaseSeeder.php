@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergiesTableSeeder::class);
         $this->call(IllnessAndAllergiesTableSeeder::class);
         $this->call(UserRequestTableSeeder::class);
-
+        $this->call(RolesTableSeeder::class);
     }
 }
