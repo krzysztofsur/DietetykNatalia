@@ -15,6 +15,7 @@ class Allergies extends Migration
     {
         Schema::create('allergies', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('userid');
             $table->string('name');
             $table->timestamps();
         });

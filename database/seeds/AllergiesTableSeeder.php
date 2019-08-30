@@ -14,6 +14,7 @@ class AllergiesTableSeeder extends Seeder
     {
         for ($i=0; $i < 5; $i++) { 
             $allergies = new Allergies();
+            $allergies -> userid = '1';
             $allergies -> name = 'Allergies'.$i;
             $allergies -> save();
         };

@@ -15,6 +15,7 @@ class Illness extends Migration
     {
         Schema::create('illnesses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('userid');
             $table->string('name');
             $table->timestamps();
         });

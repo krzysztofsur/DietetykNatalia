@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+       
     use  Notifiable, HasApiTokens;
 
     /**
@@ -37,4 +38,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function measurement()
+    {
+            return $this->hasOne('App\Measurement', 'userid');
+    } 
+
+    public function personaldata()
+    {
+            return $this->hasOne('App\PersonalData', 'userid');
+    } 
+
+    public function allergies()
+    {
+            return $this->hasOne('App\Allergies', 'userid');
+    } 
+
+    public function illness()
+    {
+            return $this->hasOne('App\Illness', 'userid');
+    }
+
+    public function diary()
+    {
+            return $this->hasMany('App\Diary', 'userid');
+    } 
 }

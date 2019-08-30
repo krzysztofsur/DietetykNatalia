@@ -13,6 +13,7 @@ class IllnessTableSeeder extends Seeder
     {
         for ($i=0; $i < 5; $i++) { 
             $illness = new Illness();
+            $illness -> userid = '1';
             $illness -> name = 'Illness'.$i;
             $illness -> save();
         };
