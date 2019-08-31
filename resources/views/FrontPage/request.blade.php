@@ -76,10 +76,10 @@
 
                 var title = $('#title').val(),
                     _token = $('#_token').val(),
-                    category = $('#email').val(),
-                    category = $('#fname').val(),
-                    category = $('#lname').val()
-                    category = $('#message').val();
+                    email = $('#email').val(),
+                    fname = $('#fname').val(),
+                    lname = $('#lname').val(),
+                    message = $('#message').val();
 
                 var form_data = new FormData();
                 form_data.append("email",email);
@@ -93,14 +93,16 @@
                     url: "/userRequestSend",
                     data: form_data,
                     contentType:false,
+                    //cache:false,
                     processData:false,
                      })
                     .done(function( msg ) {
                         console.log(msg);
-                        //toastr.success('Zostało wysłane');
+                        toastr.success('Zostało wysłane');
                     })
                     .fail(function( msg) {
-                         //toastr.error('Wystąpił błąd');
+                        console.log(msg);
+                         toastr.error('Wystąpił błąd');
                     });
             } else {
                 console.log(":(");

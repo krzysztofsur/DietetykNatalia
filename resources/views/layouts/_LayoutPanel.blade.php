@@ -68,10 +68,10 @@
                     <a href="/recipes">recipes</a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Users</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="/UserRequest">Request</a>
                         </li>
                         <li>
                             <a href="#">Page 2</a>

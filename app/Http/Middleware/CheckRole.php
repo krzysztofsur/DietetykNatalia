@@ -21,7 +21,6 @@ class CheckRole
         $actions = $request->route()->getAction();
         $roles = isset($actions['roles']) ? $actions['roles'] : null;
         if ($request->user()->hasAnyRole($roles)) {
-            echo '(^^)';
             return $next($request);
         }
         return redirect('/login');

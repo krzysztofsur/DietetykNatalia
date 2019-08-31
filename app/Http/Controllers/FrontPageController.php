@@ -17,14 +17,14 @@ class FrontPageController extends Controller
     {
         return view('FrontPage/request');
     }
-    public function userRequestSend($request)
+    public function userRequestSend(Request $request)
     {
-
+        //return $request->title;
         if ($request->ajax()) {
 
             $request->validate([
                 'title' => 'required|min:5|max:255',
-                'email' => 'required|email_address',
+                'email' => 'required',
                 'message' => 'required|min:20',
                 'fname' => 'required',
                 'lname' => 'required',

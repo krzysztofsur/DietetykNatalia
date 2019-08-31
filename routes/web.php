@@ -18,6 +18,8 @@ Route::get('/contact', 'FrontPageController@contact');
 Route::get('/userRequest', 'FrontPageController@userRequest');
 Route::post('/userRequestSend', 'FrontPageController@userRequestSend');
 
+Route::resource('UserRequest', 'UserRequestController');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
