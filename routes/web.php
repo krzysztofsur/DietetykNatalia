@@ -21,4 +21,9 @@ Route::post('/userRequestSend', 'FrontPageController@userRequestSend');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('recipes', 'RecipesController');
+Route::group([
+    'middleware' => 'roles',
+    'roles' => 'Master'
+], function () {
+    Route::resource('recipes', 'RecipesController');
+});
