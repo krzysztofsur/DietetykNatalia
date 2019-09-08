@@ -85,6 +85,10 @@ class UserRequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        //$UserRequest = UserRequest::find($id);        
+        //$UserRequest->delete();
+        //return redirect("UserRequest");
+        //return redirect()->action('UserRequestController@index');
     }
 }

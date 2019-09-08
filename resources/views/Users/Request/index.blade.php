@@ -24,8 +24,7 @@
                     <td>{{ $request->title}}</td>
                     <td>{{ $request->fname}} {{ $request->lname}}</td>
                     <td>
-                        <button class="btn btn-outline-info btn-sm requestDetails" id="{{ $request->id}}" onclick="window.location.href='/UserRequest/{{ $request->id}}'">Szczegóły</button>
-                        <button class="btn btn-outline-warning btn-sm requestDelete" id="{{ $request->id}}" >Usuń</button>
+                        <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/UserRequest/{{ $request->id}}'">Szczegóły</button>
                     </td>
                 </tr>
                 @endforeach
@@ -34,4 +33,37 @@
         {{ $requests->links() }}
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function(){
+
+    ////////DELETE/////////////
+    $('body').on('click', '.DeleteRequest', function (e) {
+        e.preventDefault();
+        if (confirm('Czy napewno chcesz usunąć?')) {
+            var id = $(this).attr('id');
+            $.ajax({
+                method: "DELETE",
+                url: "/UserRequest/"+id,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id
+                    }
+                })
+                .done(function( msg ) {
+                    toastr.success('Zostało usunięte');
+
+                })
+                .fail(function( msg) {
+                    toastr.error('Wystąpił błąd');
+                });
+        } else {
+            return false;
+        }
+    });
+});
+        
+</script>
 @endsection
