@@ -17,8 +17,8 @@
                         
     <p>Wiadomość: <br> {{ $request->message}}</p>
     
-    <button class="btn btn-outline-info btn-sm requestDetails" id="{{ $request->id}}" onclick="window.location.href='/UserRequest/{{ $request->id}}'">Odpowiedz</button>
-    <button class="btn btn-outline-info btn-sm requestDelete" id="{{ $request->id}}" >Stwórz konto</button>
+    <button class="btn btn-outline-info btn-sm" id="{{ $request->id}}" onclick="window.location.href='/userRequest/{{ $request->id}}'">Odpowiedz</button>
+    <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userRequest_Creator/{{ $request->id}}'">Stwórz konto</button>
     <button class="btn btn-outline-warning btn-sm DeleteRequest" id="{{ $request->id}}" >Usuń</button>
 
     </div>
@@ -37,14 +37,14 @@ $(document).ready(function(){
             var id = $(this).attr('id');
             $.ajax({
                 method: "DELETE",
-                url: "/UserRequest/"+id,
+                url: "/userRequest/"+id,
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "id": id
                     }
                 })
                 .done(function( msg ) {
-                    window.location.href='/UserRequest'
+                    window.location.href='/userRequest'
                     //toastr.success('Zostało usunięte');
 
                 })

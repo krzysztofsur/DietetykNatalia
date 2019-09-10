@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -53,5 +54,18 @@ class AuthController extends Controller
 
     return response($data); 
        
+   }
+
+   public function logowanie(Request $request)
+   {
+    
+    $user =User::where('email', $request->email)->first();
+    if (Hash::check($request->password, $user->password))
+{
+    return response([$user->id]);
+
+}
+
+
    }
 }

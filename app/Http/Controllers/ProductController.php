@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Product;
 
 use Illuminate\Http\Request;
-use App\UserRequest;
 
-
-class UserRequestController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,9 @@ class UserRequestController extends Controller
      */
     public function index()
     {
-        $requests = DB::table('user_requests')->orderBy('updated_at', 'desc')->paginate(10);
-        return view('Users.Request.index',  ['requests' => $requests]);
+        $categories = DB::table('product_categories')->get();
+        $products = DB::table('products')->take(100)->get();
+        return view('Product.index',  ['products' => $products,'categories'=> $categories]);
     }
 
     /**
@@ -45,24 +45,21 @@ class UserRequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-
-        //return '(^.^)';
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.show',  ['request' => $UserRequest]);
+        return "(^.^)";
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
         //
     }
@@ -71,10 +68,10 @@ class UserRequestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -82,21 +79,16 @@ class UserRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
+        //
+    }
 
-        $UserRequest = UserRequest::find($id);        
-        $UserRequest->delete();
-    }
-    public function showCreator($id)
+    public function reload()
     {
-        //return '(^.^)';
-        $pass=str_random(12);
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.create',  ['request' => $UserRequest, 'password'=>$pass]);
+        return "(^.^)";
     }
-    
 }

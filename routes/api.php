@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register','Api\AuthController@register');
 Route::post('/login','Api\AuthController@login');
+Route::post('/logowanie','Api\AuthController@logowanie');
 Route::get('/test','Api\AuthController@test');
 Route::post('personaldata/{id}', 'Api\PersonalDataController@update');
 Route::get('personaldata/{id}', 'Api\PersonalDataController@show');
@@ -26,7 +27,6 @@ Route::post('measurement/{id}', 'Api\MeasurementController@update');
 Route::get('measurement/{id}', 'Api\MeasurementController@show');
 Route::post('diary/{id}', 'Api\DiaryController@update');
 Route::get('diary/{id}', 'Api\DiaryController@show');
-Route::post('illness/{id}', 'Api\IllnessController@update');
-Route::get('illness/{id}', 'Api\IllnessController@show');
-Route::post('allergies/{id}', 'Api\AllergiesController@update');
-Route::get('andallergies/{id}', 'Api\AllergiesController@show');
+Route::post('illnessandallergies/{id}', 'Api\IllnessAndAllergiesController@update');
+Route::get('illnessandallergies/{id}', 'Api\IllnessAndAllergiesController@show');
+

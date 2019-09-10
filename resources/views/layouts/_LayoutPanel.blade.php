@@ -65,16 +65,22 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/recipes">recipes</a>
+                    <a href="/recipes">Recipes</a>
                 </li>
+                <li>
+                        <a href="/products">Products</a>
+                    </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Users</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="/UserRequest">Request</a>
+                            <a href="/userList">User List</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="/userRequest">Request</a>
+                        </li>
+                        <li>
+                            <a href="/createUser">Create User</a>
                         </li>
                         <li>
                             <a href="#">Page 3</a>

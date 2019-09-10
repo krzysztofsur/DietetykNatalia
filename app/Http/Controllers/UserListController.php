@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
-use App\UserRequest;
 
-
-class UserRequestController extends Controller
+class UserListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,15 @@ class UserRequestController extends Controller
      */
     public function index()
     {
-        $requests = DB::table('user_requests')->orderBy('updated_at', 'desc')->paginate(10);
-        return view('Users.Request.index',  ['requests' => $requests]);
+        $users = DB::table('users')
+            ->join('roles_has_users', 'users.id', '=', 'roles_has_users.user_id')
+            ->join('roles', 'roles_has_users.role_id', '=', 'roles.id')
+            ->select('users.*')
+            ->where('roles.name', '=', 'User')
+            ->paginate(10);
+
+        //$users = DB::table('users')->where('updated_at', 'desc')->paginate(10);
+        return view('Users.List.index',  ['users' => $users]);
     }
 
     /**
@@ -50,10 +54,8 @@ class UserRequestController extends Controller
      */
     public function show($id)
     {
-
-        //return '(^.^)';
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.show',  ['request' => $UserRequest]);
+        $user = UserRequest::find($id);
+        return view('Users.List.show',  ['user' => $user]);
     }
 
     /**
@@ -87,16 +89,6 @@ class UserRequestController extends Controller
      */
     public function destroy($id)
     {
-
-        $UserRequest = UserRequest::find($id);        
-        $UserRequest->delete();
+        //
     }
-    public function showCreator($id)
-    {
-        //return '(^.^)';
-        $pass=str_random(12);
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.create',  ['request' => $UserRequest, 'password'=>$pass]);
-    }
-    
 }

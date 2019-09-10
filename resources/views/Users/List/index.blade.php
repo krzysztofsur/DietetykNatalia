@@ -13,24 +13,24 @@
         <table style="width: 100%;">
             <thead>
                 <tr>
-                    <td>Tytuł</td>
-                    <td>Imie i Nazwisko</td>
+                    <td>Imie</td>
+                    <td>Email</td>
                     <td></td>
                 </tr>
             </thead>
             <tbody id="blog_list">
-                @foreach ($requests as $request)
+                @foreach ($users as $user)
                 <tr>
-                    <td>{{ $request->title}}</td>
-                    <td>{{ $request->fname}} {{ $request->lname}}</td>
+                    <td>{{ $user->name}}</td>
+                    <td>{{ $user->email}}</td>
                     <td>
-                        <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userRequest/{{ $request->id}}'">Szczegóły</button>
+                        <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userList/{{ $user->id}}'">Szczegóły</button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $requests->links() }}
+        {{ $users->links() }}
     </div>
 </div>
 @endsection

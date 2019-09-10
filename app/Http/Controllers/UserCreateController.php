@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-
+use App\User;
+use App\Roles;
 use Illuminate\Http\Request;
-use App\UserRequest;
 
 
-class UserRequestController extends Controller
+class UserCreateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class UserRequestController extends Controller
      */
     public function index()
     {
-        $requests = DB::table('user_requests')->orderBy('updated_at', 'desc')->paginate(10);
-        return view('Users.Request.index',  ['requests' => $requests]);
+        return view('Users.Create.index',['password' => str_random(12)]);
     }
 
     /**
@@ -39,7 +37,16 @@ class UserRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userRole =Roles::where('name', 'User')->first();
+        $user = new User();
+        $user->name = $request->fname;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        $user->roles()->attach($userRole);
+
+
+        return "(^.^)" ;
     }
 
     /**
@@ -50,10 +57,7 @@ class UserRequestController extends Controller
      */
     public function show($id)
     {
-
-        //return '(^.^)';
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.show',  ['request' => $UserRequest]);
+        //
     }
 
     /**
@@ -87,16 +91,6 @@ class UserRequestController extends Controller
      */
     public function destroy($id)
     {
-
-        $UserRequest = UserRequest::find($id);        
-        $UserRequest->delete();
+        //
     }
-    public function showCreator($id)
-    {
-        //return '(^.^)';
-        $pass=str_random(12);
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.create',  ['request' => $UserRequest, 'password'=>$pass]);
-    }
-    
 }

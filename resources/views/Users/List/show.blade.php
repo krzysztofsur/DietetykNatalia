@@ -19,18 +19,15 @@
                 </tr>
             </thead>
             <tbody id="blog_list">
-                @foreach ($requests as $request)
                 <tr>
-                    <td>{{ $request->title}}</td>
-                    <td>{{ $request->fname}} {{ $request->lname}}</td>
+                    <td>{{ $user->email}}</td>
+                    <td>{{ $user->name}} {{ $user->email}}</td>
                     <td>
-                        <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userRequest/{{ $request->id}}'">Szczegóły</button>
+                        <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userList/{{ $user->id}}'">Szczegóły</button>
                     </td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
-        {{ $requests->links() }}
     </div>
 </div>
 @endsection
