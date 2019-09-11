@@ -22,7 +22,6 @@ Route::resource('userRequest', 'UserRequestController');
 Route::resource('createUser', 'UserCreateController');
 Route::resource('userList', 'UserListController');
 Route::resource('products', 'ProductController');
-Route::get('products/reload', 'ProductController@reload');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

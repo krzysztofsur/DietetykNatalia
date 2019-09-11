@@ -28,7 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $products = DB::table('products')->take(100)->get();
+        return response(['products'=>$products]);
+        // "(^.^)";
     }
 
     /**
@@ -39,7 +41,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            
+            
+            $table = new Product();
+            $table->name = $request->name;
+            $table->protein = $request->protein;
+            $table->categories_id = $request->category;
+            $table->carbohydrates= $request->carbohydrates;
+            $table->fats= $request->fats;
+            $table->ca= $request->ca;
+            $table->k= $request->k;
+            $table->fe= $request->fe;
+            $table->na= $request->na;
+            $table->blonnik= $request->blonnik;
+            $table->vitamin_c= $request->vitamin_c;
+            $table->kwasy_nasycone= $request->kwasy_nasycone;
+            $table->kwasy_nienasycone= $request->kwasy_nienasycone;
+            $table->cholesterol= $request->cholesterol;
+            $table->vitamin_b12= $request->vitamin_b12;
+            $table->calories= $request->calory;
+            $table->unit= $request->unit;
+            $table->save();
+            
+        };
     }
 
     /**
@@ -48,9 +73,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        return "(^.^)";
+        return Product::find($id);
     }
 
     /**
@@ -61,7 +86,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+     //   
     }
 
     /**
@@ -73,7 +98,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $table = Product::where('id', $request->id)->first();
+        $table->name = $request->name;
+        $table->protein = $request->protein;
+        $table->categories_id = $request->category;
+        $table->carbohydrates= $request->carbohydrates;
+        $table->fats= $request->fats;
+        $table->ca= $request->ca;
+        $table->k= $request->k;
+        $table->fe= $request->fe;
+        $table->na= $request->na;
+        $table->blonnik= $request->blonnik;
+        $table->vitamin_c= $request->vitamin_c;
+        $table->kwasy_nasycone= $request->kwasy_nasycone;
+        $table->kwasy_nienasycone=$request->kwasy_nienasycone;
+        $table->cholesterol= $request->cholesterol;
+        $table->vitamin_b12= $request->vitamin_b12;
+        $table->calories= $request->calory;
+        $table->unit= $request->unit;
+        $table->save();
+
     }
 
     /**
@@ -82,13 +126,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
-    }
-
-    public function reload()
-    {
-        return "(^.^)";
+        $recipe = Product::find($id);
+        $recipe->delete();
     }
 }

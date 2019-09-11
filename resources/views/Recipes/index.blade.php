@@ -126,70 +126,70 @@
 
         $("#id_blog").val(0);
 
-                    $('#add_post').on('click', function(e) {
-                        e.preventDefault();
-                        var id=$('#id_blog').val(),
-                        title = $('#title').val(),
-                        _token = $('#_token').val(),
-                        category = $('#category').val();
+            $('#add_post').on('click', function(e) {
+                e.preventDefault();
+                var id=$('#id_blog').val(),
+                title = $('#title').val(),
+                _token = $('#_token').val(),
+                category = $('#category').val();
 
-                        var form_data = new FormData();
-                        form_data.append("category",category);
-                        form_data.append("_token",_token);
-                        form_data.append("short", tinyMCE.get('short').getContent());
-                        form_data.append("description", tinyMCE.get('description').getContent());
-                        form_data.append("title",title);
-        
-                        if(id==0){
-                            var property = document.getElementById('imgs').files[0];
-                            form_data.append("file",property);
-                            $.ajax({
-                                method: "POST",
-                                url: "/recipes",
-                                data: form_data,
-                                contentType:false,
-                                cache:false,
-                                processData:false,
-                            })
-                            .done(function( msg ) {
-                                toastr.success('Post został dodany');
-                                show_products();
-                            })
-                            .fail(function() {
-                                toastr.error('Uzupełnij wszystkie pola');
-                            });
-                        }else{
-                            var vidFileLength = $("#imgs")[0].files.length;
-                            if(vidFileLength === 0){
-                                var change = false;
-                                var property = $("#imgs_file").attr("src");
-                                //property= property.replace("../","../../../");
-                            }else{
-                                var change = true;
-                                var property = document.getElementById('imgs').files[0];
-                            };
-                            form_data.append("file",property);
-                            form_data.append("change",change);
-                            form_data.append("id",id);
-                            form_data.append("_method",'PUT');
-                            $.ajax({
-                                method: "POST",
-                                url: "/recipes/"+id,
-                                data: form_data,
-                                contentType:false,
-                                cache:false,
-                                processData:false,
-                            })
-                            .done(function( msg ) {
-                                //console.log(msg);
-                                toastr.success('Post został zaktualizowany');
-                                show_products();
-                            })
-                            .fail(function() {
-                                toastr.error('Wystąpił błąd');
-                            }); 
-                        };
+                var form_data = new FormData();
+                form_data.append("category",category);
+                form_data.append("_token",_token);
+                form_data.append("short", tinyMCE.get('short').getContent());
+                form_data.append("description", tinyMCE.get('description').getContent());
+                form_data.append("title",title);
+
+                if(id==0){
+                    var property = document.getElementById('imgs').files[0];
+                    form_data.append("file",property);
+                    $.ajax({
+                        method: "POST",
+                        url: "/recipes",
+                        data: form_data,
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+                    })
+                    .done(function( msg ) {
+                        toastr.success('Post został dodany');
+                        show_products();
+                    })
+                    .fail(function() {
+                        toastr.error('Uzupełnij wszystkie pola');
                     });
+                }else{
+                    var vidFileLength = $("#imgs")[0].files.length;
+                    if(vidFileLength === 0){
+                        var change = false;
+                        var property = $("#imgs_file").attr("src");
+                        //property= property.replace("../","../../../");
+                    }else{
+                        var change = true;
+                        var property = document.getElementById('imgs').files[0];
+                    };
+                    form_data.append("file",property);
+                    form_data.append("change",change);
+                    form_data.append("id",id);
+                    form_data.append("_method",'PUT');
+                    $.ajax({
+                        method: "POST",
+                        url: "/recipes/"+id,
+                        data: form_data,
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+                    })
+                    .done(function( msg ) {
+                        //console.log(msg);
+                        toastr.success('Post został zaktualizowany');
+                        show_products();
+                    })
+                    .fail(function() {
+                        toastr.error('Wystąpił błąd');
+                    }); 
+                };
+            });
 
 
 

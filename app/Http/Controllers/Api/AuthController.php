@@ -61,10 +61,10 @@ class AuthController extends Controller
     
     $user =User::where('email', $request->email)->first();
     if (Hash::check($request->password, $user->password))
-{
-    return response([$user->id]);
+    {
+        return response(['id' => $user->id]);
 
-}
+    }
 
 
    }

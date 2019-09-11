@@ -18,3 +18,4 @@ function show_products() {
             toastr.error('Wystąpił błąd');
         });
 }
+
