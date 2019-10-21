@@ -13,7 +13,7 @@
         <table style="width: 100%;">
             <thead>
                 <tr>
-                    <td>Tytuł</td>
+                    <td>Email</td>
                     <td>Imie i Nazwisko</td>
                     <td></td>
                 </tr>

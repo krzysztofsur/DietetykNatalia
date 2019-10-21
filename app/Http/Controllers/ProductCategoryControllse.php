@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Http\Request;
-use App\UserRequest;
-
-
-class UserRequestController extends Controller
+class ProductCategoryControllse extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class UserRequestController extends Controller
      */
     public function index()
     {
-        $requests = DB::table('user_requests')->orderBy('updated_at', 'desc')->paginate(10);
-        return view('Users.Request.index',  ['requests' => $requests]);
+        $categories = DB::table('product_categories')->take(100)->get();
+        return view('Product.addCategory',  ['categories'=> $categories]);
     }
 
     /**
@@ -50,10 +48,7 @@ class UserRequestController extends Controller
      */
     public function show($id)
     {
-
-        //return '(^.^)';
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.show',  ['request' => $UserRequest]);
+        //
     }
 
     /**
@@ -87,15 +82,6 @@ class UserRequestController extends Controller
      */
     public function destroy($id)
     {
-        $UserRequest = UserRequest::find($id);        
-        $UserRequest->delete();
+        //
     }
-    public function showCreator($id)
-    {
-        //return '(^.^)';
-        $pass=str_random(12);
-        $UserRequest = UserRequest::find($id);
-        return view('Users.Request.create',  ['request' => $UserRequest, 'password'=>$pass]);
-    }
-    
 }

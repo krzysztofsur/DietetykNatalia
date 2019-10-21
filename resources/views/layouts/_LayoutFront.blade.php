@@ -30,15 +30,15 @@
                 aria-controls="MainMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt=""> </a>
+            <a class="navbar-brand" href="/"><img src="{{ asset('img/logo.png') }}" alt=""> </a>
 
             <div class="collapse navbar-collapse" id="MainMenu">
                 <div class="navbar-nav float-right text-right pr-3">
-                    <a class="nav-item nav-link <?= $activeMainMenu == 'home' ? 'active' : ''?>" href="{{ url('/') }}">Home</a>
+                    <a class="nav-item nav-link" href="/">Home</a>
                     <a class="nav-item nav-link" href="#">About Us</a>
-                    <a class="nav-item nav-link <?= $activeMainMenu == 'request' ? 'active' : ''?>" href="/userRequest">Request</a>
-                    <a class="nav-item nav-link <?= $activeMainMenu == 'contact' ? 'active' : ''?>" href="/contact">Contakt</a>
-                    <a class="nav-item nav-link <?= $activeMainMenu == 'recipe' ? 'active' : ''?>" href="{{ url('/home') }}">Blog</a>
+                    <a class="nav-item nav-link" href="/FrontUserRequest">Request</a>
+                    <a class="nav-item nav-link" href="/contact">Contakt</a>
+                    <a class="nav-item nav-link" href="/home">Blog</a>
                 </div>
             </div>
         </nav>
@@ -50,7 +50,7 @@
 
     <footer class="page-footer font-small">
         <div class="footer-copyright text-center">
-            © 2018 Copyright:<a href="#"> ATH Ghost</a>
+            © 2018 Copyright:<a href="#">ATH Ghost</a>
         </div>
     </footer>
 
@@ -58,6 +58,7 @@
     <script src="{{ asset('js/app.js') }}" ></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/toastr.js') }}"></script>
+    <script src="{{ asset('js/ScriptFront.js') }}"></script>
 <script>
 
 </script>

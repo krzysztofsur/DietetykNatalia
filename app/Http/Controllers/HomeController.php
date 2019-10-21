@@ -23,7 +23,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+       // ['recipes' => $recipes]
+        $name = "natt";
+        //$test= bcrypt();
+        $test= $this->salt("1234567899", $name);
+
+        return view('home',['test' => $test]);
     }
+
+    function salt($password, $name)
+    {
+        return $name;
+    }
+
 
 }

@@ -77,30 +77,6 @@ function activateNotificationAndTasksScroll() {
     });
 }
 
-
-
-/// show blog list ///
-function show_products() {
-    $.ajax({
-        method: "GET",
-        url: "/recipes/create",
-        
-    })
-        .done(function (msg) {
-            var tab = msg.recipes.data;
-            //console.log(msg.recipes.data)
-            $('#blog_list').html("");
-            for (let i = 0; i < tab.length; i++) {
-                var tmp = tab[i].updated_at.split(' ')
-                $('#blog_list').append('<tr><td>'+tab[i].title+'</td><td>'+tmp[0]+'</td><td><button class="btn btn-outline-info btn-sm blogedit" id="'+tab[i].id+'">Edit</button><button class="btn btn-outline-warning btn-sm blogdelete" id="'+tab[i].id+'">Usuń</button></td></tr>');
-            }
-        })
-        .fail(function () {
-            toastr.error('Wystąpił błąd');
-        });
-}
-/// end show blog list ///
-
 /// menu add active class ///
 var patch = window.location.pathname.split("/").pop();
 var target = $('li a[href="/'+patch+'"]');

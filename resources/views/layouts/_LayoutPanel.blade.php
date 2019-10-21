@@ -31,6 +31,7 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/theme-cyan.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mainPanel.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
     @yield('styles')
 
@@ -468,8 +469,9 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/scriptPanel.js') }}"></script>
+    <script src="{{ asset('js/toastr.js') }}"></script>
 
-
+    <script src="{{ asset('js/functions/share.js') }}"></script>
     
     <!-- Slimscroll Plugin Js -->
     <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>

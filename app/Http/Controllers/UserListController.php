@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -54,7 +56,7 @@ class UserListController extends Controller
      */
     public function show($id)
     {
-        $user = UserRequest::find($id);
+        $user = User::find($id);
         return view('Users.List.show',  ['user' => $user]);
     }
 

@@ -13,11 +13,11 @@ class FrontPageController extends Controller
         return view('FrontPage/contact');
     }
 
-    public function userRequest()
+    public function FrontUserRequest()
     {
         return view('FrontPage/request');
     }
-    public function userRequestSend(Request $request)
+    public function FrontUserRequestSend(Request $request)
     {
         //return $request->title;
         if ($request->ajax()) {

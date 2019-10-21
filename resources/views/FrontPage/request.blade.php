@@ -90,7 +90,7 @@
                 form_data.append("message",message);
                 $.ajax({
                     method: "POST",
-                    url: "/userRequestSend",
+                    url: "/FrontUserRequestSend",
                     data: form_data,
                     contentType:false,
                     //cache:false,

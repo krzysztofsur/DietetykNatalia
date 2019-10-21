@@ -12,7 +12,7 @@
 @section('main')
 
 <div class="row">
-    <div class="col-5">
+    <div class="col-lg-5">
         <table style="width: 100%;">
             <thead>
                 <tr>
@@ -27,8 +27,8 @@
                     <td>{{ $recipe->title}}</td>
                     <td>{{ date('Y-m-d', strtotime($recipe->updated_at))}}</td>
                     <td>
-                        <button class="btn btn-outline-info btn-sm blogedit" id="{{ $recipe->id}}">Edit</button>
-                        <button class="btn btn-outline-warning btn-sm blogdelete" id="{{ $recipe->id}}">Usuń</button>
+                        <button class="btn btn-outline-info btn-sm" onclick="blogEdit({{ $recipe->id}})">Edit</button>
+                        <button class="btn btn-outline-warning btn-sm" onclick="blogDelete({{ $recipe->id}})">Usuń</button>
                     </td>
                 </tr>
                 @endforeach
@@ -36,7 +36,7 @@
         </table>
         {{ $recipes->links() }}
     </div>
-    <div class="col-6" id="input_blog">
+    <div class="col-lg-6" id="input_blog">
 
         <div class="row">
             <label for="title">Tytuł</label>
@@ -65,8 +65,7 @@
         <div class="row">
             <input type="hidden" name="id" id="id_blog">
             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-            <button id="add_post">Zapisz</button>
-            <button class="testtt" id="10">test</button>
+            <button onclick="addPost()">Zapisz</button>
         </div>
 
     </div>
@@ -75,149 +74,10 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('js/functions/recipes.js') }}"></script>
+
 <script>
-    //show_products();
-    $(document).ready(function(){
-        ////////DELETE/////////////
-        $('body').on('click', '.blogdelete', function (e) {
-            e.preventDefault();
-            if (confirm('Czy napewno chcesz usunąć?')) {
-                var id = $(this).attr('id');
-                $.ajax({
-                    method: "DELETE",
-                    url: "/recipes/"+id,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                        }
-                    })
-                    .done(function( msg ) {
-                        toastr.success('Zostało usunięte');
-                        show_products();
-                    })
-                    .fail(function( msg) {
-                        toastr.error('Wystąpił błąd');
-                    });
-            } else {
-                return false;
-            }
-        });
-
-        $('body').on('click', '.testtt', function (e) {
-            e.preventDefault();
-                var id = $(this).attr('id');
-                $.ajax({
-                    method: "PATCH",
-                    url: "/recipes/"+id,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id
-                        }
-                    })
-                    .done(function( msg ) {
-                        console.log(msg)
-                        toastr.success('Zostało usunięte');
-                        //show_products();
-                    })
-                    .fail(function( msg) {
-                        toastr.error('Wystąpił błąd');
-                    });
-            });
-
-        $("#id_blog").val(0);
-
-            $('#add_post').on('click', function(e) {
-                e.preventDefault();
-                var id=$('#id_blog').val(),
-                title = $('#title').val(),
-                _token = $('#_token').val(),
-                category = $('#category').val();
-
-                var form_data = new FormData();
-                form_data.append("category",category);
-                form_data.append("_token",_token);
-                form_data.append("short", tinyMCE.get('short').getContent());
-                form_data.append("description", tinyMCE.get('description').getContent());
-                form_data.append("title",title);
-
-                if(id==0){
-                    var property = document.getElementById('imgs').files[0];
-                    form_data.append("file",property);
-                    $.ajax({
-                        method: "POST",
-                        url: "/recipes",
-                        data: form_data,
-                        contentType:false,
-                        cache:false,
-                        processData:false,
-                    })
-                    .done(function( msg ) {
-                        toastr.success('Post został dodany');
-                        show_products();
-                    })
-                    .fail(function() {
-                        toastr.error('Uzupełnij wszystkie pola');
-                    });
-                }else{
-                    var vidFileLength = $("#imgs")[0].files.length;
-                    if(vidFileLength === 0){
-                        var change = false;
-                        var property = $("#imgs_file").attr("src");
-                        //property= property.replace("../","../../../");
-                    }else{
-                        var change = true;
-                        var property = document.getElementById('imgs').files[0];
-                    };
-                    form_data.append("file",property);
-                    form_data.append("change",change);
-                    form_data.append("id",id);
-                    form_data.append("_method",'PUT');
-                    $.ajax({
-                        method: "POST",
-                        url: "/recipes/"+id,
-                        data: form_data,
-                        contentType:false,
-                        cache:false,
-                        processData:false,
-                    })
-                    .done(function( msg ) {
-                        //console.log(msg);
-                        toastr.success('Post został zaktualizowany');
-                        show_products();
-                    })
-                    .fail(function() {
-                        toastr.error('Wystąpił błąd');
-                    }); 
-                };
-            });
-
-
-
-
-                    $('body').on('click', '.blogedit', function (e) {
-            e.preventDefault();
-                var id = $(this).attr('id');
-                $.ajax({
-                    method: "GET",
-                    url: "/recipes/"+id+"/edit",
-                    
-                    })
-                        .done(function( msg ) {
-                            $('#title').val(msg.title);
-                            $('#id_blog').val(msg.id);
-                            $('#category').val(msg.category);
-                            let str = msg.photo;
-                            //str = str.replace("../../../", "../" );
-                            $('#imgs_file').attr("src", str);
-                            tinymce.get("short").execCommand('mceSetContent', false, msg.short);
-                            tinymce.get("description").execCommand('mceSetContent', false, msg.description);
-                        })
-                        .fail(function() {
-                            toastr.error('Wystąpił błąd');
-                        });
-                });
-                    
-                });
+    
         
 </script>
 @endsection
