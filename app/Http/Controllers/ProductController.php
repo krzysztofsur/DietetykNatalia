@@ -42,8 +42,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            
-            
             $table = new Product();
             $table->name = $request->name;
             $table->protein = $request->protein;

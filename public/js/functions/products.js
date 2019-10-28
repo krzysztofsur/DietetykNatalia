@@ -14,10 +14,9 @@ function show_product_list() {
         })
         .fail(function () {
             toastr.error('Wystąpił błąd');
-        });
+    });
 }
 
-show_product_list();
 /// clean Input ///
 function cleanInput(){
     $('#id_product').val(0);
@@ -57,13 +56,11 @@ function product_Delete() {
 
 /// select ///
 function product_select() {
-
-$.ajax({
-    method: "GET",
-    url: "/products/"+$("#product").val()[0],
-})
+    $.ajax({
+        method: "GET",
+        url: "/products/"+$("#product").val()[0],
+    })
     .done(function (msg) {
-        console.log('dziala');
         $('#id_product').val(msg.id);
         $('#product_name').val(msg.name);
         $('#product_calories').val(msg.calories);
@@ -88,12 +85,9 @@ $.ajax({
     });
 }
 
-/// add/edit ///
-$(document).ready(function(){
-    $('#add_product').on('click', function(e) {
-        e.preventDefault();
-        var id=$('#id_product').val(),
-        _token = $('#_token').val(),
+/// take value and add to FormData ///
+function takeInput(){
+    var _token = $('#_token').val(),
         name = $('#product_name').val(),
         calory = $('#product_calories').val(),
         protein = $('#product_protein').val(),
@@ -111,64 +105,78 @@ $(document).ready(function(){
         vitamin_c = $('#product_vitamin_c').val(),
         blonnik = $('#product_blonnik').val();
 
-        var form_data = new FormData();
-        form_data.append("category",category);
-        form_data.append("name",name);
-        form_data.append("_token",_token);
-        form_data.append("calory", calory);
-        form_data.append("protein", protein);
-        form_data.append("ca",ca);
-        form_data.append("k",k);
-        form_data.append("fe",fe);
-        form_data.append("na",na);
-        form_data.append("carbohydrates",carbohydrates);
-        form_data.append("fats",fats);
-        form_data.append("vitamin_b12",vitamin_b12);
-        form_data.append("cholesterol",cholesterol);
-        form_data.append("kwasy_nienasycone",kwasy_nienasycone);
-        form_data.append("kwasy_nasycone",kwasy_nasycone);
-        form_data.append("vitamin_c",vitamin_c);
-        form_data.append("blonnik",blonnik);
-        form_data.append("unit",'test');
+    var form_data = new FormData();
+    form_data.append("category",category);
+    form_data.append("name",name);
+    form_data.append("_token",_token);
+    form_data.append("calory", calory);
+    form_data.append("protein", protein);
+    form_data.append("ca",ca);
+    form_data.append("k",k);
+    form_data.append("fe",fe);
+    form_data.append("na",na);
+    form_data.append("carbohydrates",carbohydrates);
+    form_data.append("fats",fats);
+    form_data.append("vitamin_b12",vitamin_b12);
+    form_data.append("cholesterol",cholesterol);
+    form_data.append("kwasy_nienasycone",kwasy_nienasycone);
+    form_data.append("kwasy_nasycone",kwasy_nasycone);
+    form_data.append("vitamin_c",vitamin_c);
+    form_data.append("blonnik",blonnik);
+    form_data.append("unit",'test');
+    return form_data;
+}
 
-        if(id==0){
-            $.ajax({
-                method: "POST",
-                url: "/products",
-                data: form_data,
-                contentType:false,
-                cache:false,
-                processData:false,
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                toastr.success('Produkt został dodany');
-                show_product_list();
-            })
-            .fail(function() {
-                toastr.error('Uzupełnij wszystkie pola');
-            });
-        }else{
-            console.log(id+" edit");
-
-            form_data.append("id",id);
-            form_data.append("_method",'PUT');
-            $.ajax({
-                method: "POST",
-                url: "/products/"+id,
-                data: form_data,
-                contentType:false,
-                cache:false,
-                processData:false,
-            })
-            .done(function( msg ) {
-                console.log(msg)
-                toastr.success('Produkt został zaktualizowany');
-                show_product_list();
-            })
-            .fail(function() {
-                toastr.error('Wystąpił błąd');
-            }); 
-        };
+/// add ///
+function addProduct(){
+    form_data= takeInput();
+    $.ajax({
+        method: "POST",
+        url: "/products",
+        data: form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
+    })
+    .done(function( msg ) {
+        console.log(msg);
+        toastr.success('Produkt został dodany');
+        show_product_list();
+    })
+    .fail(function() {
+        toastr.error('Uzupełnij wszystkie pola');
     });
-});
+}
+
+/// edit ///
+function editProduct(){
+    form_data= takeInput();
+    var id=$('#id_product').val();
+    if(id==0){
+        toastr.info('Wybierz produkt');
+    }else{
+        form_data.append("id",id);
+        form_data.append("_method",'PUT');
+        $.ajax({
+            method: "POST",
+            url: "/products/"+id,
+            data: form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+        })
+        .done(function( msg ) {
+            console.log(msg)
+            toastr.success('Produkt został zaktualizowany');
+            show_product_list();
+        })
+        .fail(function() {
+            toastr.error('Wystąpił błąd');
+        });
+    }
+}
+
+/// search ///
+function searchProduct(){
+    
+}

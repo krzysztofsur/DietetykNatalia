@@ -1,3 +1,4 @@
+/// delete pattern ///
 function ajax_delete(data) {
     var res = confirm("Czy napewno chcesz usunąć?");
     if(res) {
@@ -17,3 +18,9 @@ function ajax_delete(data) {
         return false;
     }
 }
+
+
+// var arrNumber = new Array();
+// $('input[type=number]').each(function(){
+//     arrNumber.push($(this).val());
+// })

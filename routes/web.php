@@ -31,6 +31,14 @@ Route::group([
     'middleware' => 'roles',
     'roles' => 'Master'
 ], function () {
+
     Route::get('/userRequest_Creator/{id}', 'UserRequestController@showCreator');
     Route::resource('recipes', 'RecipesController');
+
+    Route::resource('userRequest', 'UserRequestController');
+    Route::resource('createUser', 'UserCreateController');
+    Route::resource('userList', 'UserListController');
+    Route::resource('products', 'ProductController');
+    Route::resource('addCategory', 'ProductCategoryControllse');
+
 });

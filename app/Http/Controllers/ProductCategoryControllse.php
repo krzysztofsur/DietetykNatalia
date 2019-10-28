@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductCategorie;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,13 @@ class ProductCategoryControllse extends Controller
      */
     public function create()
     {
-        //
+        $query= 'prod';
+        $category = DB::table('product_categories')
+            ->where('name', 'like', '%'.$query.'%')
+            ->take(100)
+            ->get();
+        return response(['category'=>$category]);
+
     }
 
     /**
@@ -37,7 +44,12 @@ class ProductCategoryControllse extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $table = new ProductCategorie();
+            $table->name = $request->name;
+            $table->save();
+            
+        };
     }
 
     /**
@@ -48,7 +60,7 @@ class ProductCategoryControllse extends Controller
      */
     public function show($id)
     {
-        //
+        return ProductCategorie::find($id);
     }
 
     /**
@@ -71,7 +83,9 @@ class ProductCategoryControllse extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $table = ProductCategorie::where('id', $request->id)->first();
+        $table->name = $request->name;
+        $table->save();
     }
 
     /**
@@ -82,6 +96,6 @@ class ProductCategoryControllse extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProductCategorie::find($id)->delete();
     }
 }

@@ -1,30 +1,30 @@
 @extends('layouts._LayoutPanel')
-<?php $activeMainMenu = 'blog'; ?>
 @section('title','Produkty')
 @section('styles')
-<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=fqnmeurrl0ry206hcbd9m1dnhcflolt0mbr4u4ye7rvw11gc">
-</script>
-<script>
-    tinymce.init({ selector:'textarea' });
-</script>
+
 @endsection
 
 @section('main')
 
-<button onclick="cleanInput()">Dodaj nowy produkt</button>
+<button onclick="cleanInput()">Wyczyść wszystko</button>
 <button onclick="window.location.href='/addCategory'" class="btn bg-blue waves-effect pull-right">Dodaj kategorię</button>
 
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <label for="product">Lista produktów</label>
         <input type="text" class="form-control" id="product_search" oninput="search_product()" placeholder="Szukaj...">
+        <select class="form-control show-tick" id="product_search_category">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id}}">{{ $category->name}}</option>
+            @endforeach
+        </select>
         <select multiple class="form-control" id="product" onchange="product_select()">
             @foreach ($products as $product)
             <option value="{{ $product->id}}">{{ $product->name}}</option>
             @endforeach
         </select>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-8">
         <div class="row">
             <div class="col-sm-6">
                 <label for="product_name">Nazwa</label>
@@ -104,7 +104,9 @@
         <div class="row">
             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="id" id="id_product">
-            <button type="button" class="btn btn-success" id="add_product">Zapisz</button>
+            <button type="button" class="btn btn-success" onclick="addProduct()">Dodaj produkt</button>
+            <button type="button" class="btn btn-success" onclick="editProduct()">Edytuj produkt</button>
+
             <button class="btn btn-danger" onclick="product_Delete()">Usuń</button>
             <!--<button class="btn btn-success" onclick="location.href='./product_category.php'">Kategorie</button>-->
         </div>

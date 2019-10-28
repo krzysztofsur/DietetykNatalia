@@ -219,6 +219,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/meal">
+                            <i class="material-icons">home</i>
+                            <span>Posiłki</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/products">
                             <i class="material-icons">cake</i>
                             <span>Products</span>
@@ -457,10 +463,20 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                    <h2>@yield('title') </h2>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                @yield('title')
+                            </h2>
+                        </div>
+                        <div class="body">
+                            @yield('main')
+                        </div>
+                    </div>
+                </div>
             </div>
-            @yield('main')
         </div>
     </section>
 
