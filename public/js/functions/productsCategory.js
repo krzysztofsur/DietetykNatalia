@@ -92,33 +92,33 @@ function deleteCategory(){
     };
     ajax_delete(data);
 }
+refreshList();
 
 /// Refresh List ///
 function refreshList(){
-    var _token = $("#_token").val();
-    var query = 'rod'
+    var form_data = new FormData();
+    var query = $("#product_search").val();
+    form_data.append("_token",$("#_token").val());
+    form_data.append("query",query);
     //$("#product_search").val();
     $.ajax({
-        method: "GET",
-        url: "/addCategory/create",
-        data: {
-            "_token": _token,
-            "query": query
-        }
+        method: "POST",
+        url: "/addCategory/search",
+        data: form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
         })
             .done(function (msg) {
                 $('#category').html("");
-                console.log(msg.test);
-                console.log("działa");
-                console.log(msg.category);
+                console.log("(^.^)");
                 msg.category.forEach(element => {
-                    console.log(element.name)
                     $('#category').append('<option value="' + element.id + '">' +element.name + '</option>');
                 });
                 cleanInput();
             })
-            .fail(function () {
-                toastr.error('Wystąpił błąd');
+            .fail(function (msg) {
+
         });   
 }
 

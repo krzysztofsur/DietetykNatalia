@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-lg-5">
         <label for="category">Lista kategorii</label>
-        <input type="text" class="form-control" id="product_search" oninput="search_product()" placeholder="Szukaj...">
+        <input type="text" class="form-control" id="product_search" oninput="refreshList()" placeholder="Szukaj...">
         <select multiple class="form-control" id="category" onchange="selectCategory()">
             @foreach ($categories as $category)
             <option value="{{ $category->id}}">{{ $category->name}}</option>

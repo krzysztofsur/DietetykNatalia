@@ -18,12 +18,6 @@ Route::get('/contact', 'FrontPageController@contact');
 Route::get('/FrontUserRequest', 'FrontPageController@FrontUserRequest');
 Route::post('/FrontUserRequestSend', 'FrontPageController@FrontUserRequestSend');
 
-Route::resource('userRequest', 'UserRequestController');
-Route::resource('createUser', 'UserCreateController');
-Route::resource('userList', 'UserListController');
-Route::resource('products', 'ProductController');
-Route::resource('addCategory', 'ProductCategoryControllse');
-
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -39,6 +33,9 @@ Route::group([
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
     Route::resource('products', 'ProductController');
+    
+    /// Product Category ///
     Route::resource('addCategory', 'ProductCategoryControllse');
+    Route::post('/addCategory/search', 'ProductCategoryControllse@search');
 
 });

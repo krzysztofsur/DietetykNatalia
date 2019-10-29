@@ -27,13 +27,7 @@ class ProductCategoryControllse extends Controller
      */
     public function create()
     {
-        $query= 'prod';
-        $category = DB::table('product_categories')
-            ->where('name', 'like', '%'.$query.'%')
-            ->take(100)
-            ->get();
-        return response(['category'=>$category]);
-
+        //
     }
 
     /**
@@ -48,7 +42,6 @@ class ProductCategoryControllse extends Controller
             $table = new ProductCategorie();
             $table->name = $request->name;
             $table->save();
-            
         };
     }
 
@@ -97,5 +90,20 @@ class ProductCategoryControllse extends Controller
     public function destroy($id)
     {
         ProductCategorie::find($id)->delete();
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $query=$request->get('query');
+            $category = DB::table('product_categories')
+                ->where('name', 'like', '%'.$query.'%')
+                ->take(100)
+                ->get();
+            
+            
+            return response(['category'=>$category]);
+        };
+        
     }
 }
