@@ -33,6 +33,7 @@ Route::group([
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
     Route::resource('products', 'ProductController');
+    Route::post('products/search', 'ProductController@search');
     
     /// Product Category ///
     Route::resource('addCategory', 'ProductCategoryControllse');

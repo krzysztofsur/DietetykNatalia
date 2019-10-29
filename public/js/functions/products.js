@@ -1,20 +1,29 @@
-/// show list ///
-function show_product_list() {
+/// refresh list ///
+function refreshList(){
+    var form_data = new FormData();
+    var query = $("#product_search").val();
+    var query_cat = $("#product_search_category").val();
+    form_data.append("_token",$("#_token").val());
+    form_data.append("query",query);
+    form_data.append("query_cat",query_cat);
     $.ajax({
-    method: "GET",
-    url: "/products/create",
-    })
-        .done(function (msg) {
-            var tab = msg.products;
-            $('#product').html("");
-            for (let i = 0; i < tab.length; i++) {
-                $('#product').append('<option value="' + tab[i].id + '">' + tab[i].name + '</option>');
-            }
-            cleanInput();
+        method: "POST",
+        url: "/products/search",
+        data: form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
         })
-        .fail(function () {
-            toastr.error('Wystąpił błąd');
-    });
+            .done(function (msg) {
+                $('#product').html("");
+                console.log("(^.^)");
+                msg.products.forEach(element => {
+                    $('#product').append('<option value="' + element.id + '">' +element.name + '</option>');
+                });
+            })
+            .fail(function (msg) {
+
+        });   
 }
 
 /// clean Input ///
@@ -49,7 +58,10 @@ function product_Delete() {
             "_token": _token,
             "id": id
         },
-        ifDone: function() { show_product_list()},
+        ifDone: function() { 
+            refreshList();
+            cleanInput();
+        },
     };
     ajax_delete(data);
 }
@@ -141,7 +153,8 @@ function addProduct(){
     .done(function( msg ) {
         console.log(msg);
         toastr.success('Produkt został dodany');
-        show_product_list();
+        refreshList();
+        cleanInput();
     })
     .fail(function() {
         toastr.error('Uzupełnij wszystkie pola');
@@ -168,15 +181,12 @@ function editProduct(){
         .done(function( msg ) {
             console.log(msg)
             toastr.success('Produkt został zaktualizowany');
-            show_product_list();
+            refreshList();
+            cleanInput();
+
         })
         .fail(function() {
             toastr.error('Wystąpił błąd');
         });
     }
-}
-
-/// search ///
-function searchProduct(){
-    
 }

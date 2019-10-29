@@ -12,12 +12,14 @@
 <div class="row">
     <div class="col-lg-4">
         <label for="product">Lista produktów</label>
-        <input type="text" class="form-control" id="product_search" oninput="search_product()" placeholder="Szukaj...">
-        <select class="form-control show-tick" id="product_search_category">
+        <input type="text" class="form-control" id="product_search" oninput="refreshList()" placeholder="Szukaj...">
+        <select class="form-control show-tick" onchange="refreshList()" id="product_search_category">
+                <option value="0">Wybierz kategorię</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id}}">{{ $category->name}}</option>
             @endforeach
         </select>
+        <br/>
         <select multiple class="form-control" id="product" onchange="product_select()">
             @foreach ($products as $product)
             <option value="{{ $product->id}}">{{ $product->name}}</option>

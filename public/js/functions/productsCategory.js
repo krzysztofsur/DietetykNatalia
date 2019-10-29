@@ -27,7 +27,7 @@ function addCategory(){
     .done(function( msg ) {
         console.log(msg);
         toastr.success('Produkt został dodany');
-        //refreshList();
+        refreshList();
     })
     .fail(function() {
         toastr.error('Uzupełnij wszystkie pola');
@@ -54,7 +54,7 @@ function editCategory(){
         .done(function( msg ) {
             console.log(msg)
             toastr.success('Produkt został zaktualizowany');
-            //refreshList();
+            refreshList();
         })
         .fail(function() {
             toastr.error('Wystąpił błąd');
@@ -92,7 +92,6 @@ function deleteCategory(){
     };
     ajax_delete(data);
 }
-refreshList();
 
 /// Refresh List ///
 function refreshList(){
@@ -100,7 +99,6 @@ function refreshList(){
     var query = $("#product_search").val();
     form_data.append("_token",$("#_token").val());
     form_data.append("query",query);
-    //$("#product_search").val();
     $.ajax({
         method: "POST",
         url: "/addCategory/search",

@@ -129,4 +129,25 @@ class ProductController extends Controller
         $recipe = Product::find($id);
         $recipe->delete();
     }
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $query_cat=$request->get('query_cat');
+            $query=$request->get('query');
+            if($query_cat==0){
+                $products = DB::table('products')
+                    ->where('name', 'like', '%'.$query.'%')
+                    ->take(100)
+                    ->get();
+            }else{
+                $products = DB::table('products')
+                    ->where('categories_id', '=', $query_cat)
+                    ->where('name', 'like', '%'.$query.'%')
+                    ->take(100)
+                    ->get();
+            };
+            return response(['products'=>$products]);
+        };
+        
+    }
 }

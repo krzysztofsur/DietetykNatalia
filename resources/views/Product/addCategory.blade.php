@@ -7,7 +7,6 @@
 @section('main')
 
 <button onclick="cleanInput()">Wyczyść wszystko</button>
-<button onclick="test()">test</button>
 
 <div class="row">
     <div class="col-lg-5">

@@ -100,8 +100,6 @@ class ProductCategoryControllse extends Controller
                 ->where('name', 'like', '%'.$query.'%')
                 ->take(100)
                 ->get();
-            
-            
             return response(['category'=>$category]);
         };
         
