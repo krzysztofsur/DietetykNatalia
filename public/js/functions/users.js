@@ -21,6 +21,7 @@ function SubmitCreate(){
         processData:false,
         })
         .done(function( msg ) {
+            console.log(msg);
             //window.location.href='/UserRequest'
             //toastr.success('Zostało usunięte');
 

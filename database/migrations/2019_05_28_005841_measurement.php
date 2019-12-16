@@ -15,18 +15,20 @@ class Measurement extends Migration
     {
         Schema:: create('measurements', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('userid');
-            $table->double('weight', 8, 2);
-            $table->double('height', 8, 2);
-            $table->double('waist', 8, 2);
-            $table->double('stomach', 8, 2);
-            $table->double('hips', 8, 2);
-            $table->double('neck', 8, 2);
-            $table->double('wrist', 8, 2);
-            $table->double('thigh', 8, 2);
-            $table->double('biceps', 8, 2);
-            $table->double('chest', 8, 2);
+            $table->integer('userid')->unsigned();
+            $table->double('weight', 8, 2)->nullable($value = true);
+            $table->double('height', 8, 2)->nullable($value = true);
+            $table->double('waist', 8, 2)->nullable($value = true);
+            $table->double('stomach', 8, 2)->nullable($value = true);
+            $table->double('hips', 8, 2)->nullable($value = true);
+            $table->double('neck', 8, 2)->nullable($value = true);
+            $table->double('wrist', 8, 2)->nullable($value = true);
+            $table->double('thigh', 8, 2)->nullable($value = true);
+            $table->double('biceps', 8, 2)->nullable($value = true);
+            $table->double('chest', 8, 2)->nullable($value = true);
             $table->timestamps();
+
+            $table->foreign('userid')->references('id')->on('users');
         });
     }
 

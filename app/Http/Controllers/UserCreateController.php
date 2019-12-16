@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\UserRelationships;
 use App\User;
 use App\Roles;
 use Illuminate\Http\Request;
@@ -45,8 +46,17 @@ class UserCreateController extends Controller
         $user->save();
         $user->roles()->attach($userRole);
 
+         $tab= [
+             "email" => $request->email,
+             "fname" => $request->fname,
+             "lname" => $request->lname,
+         ];
+        
+         $createRelation = new UserRelationships();
+         $createRelation->createAll($tab);
 
-        return "(^.^)" ;
+
+        return $tab ;
     }
 
     /**

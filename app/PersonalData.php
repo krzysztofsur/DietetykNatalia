@@ -9,6 +9,6 @@ class PersonalData extends Model
     //
     public function user()
     {
-            return $this->belongsTo('App\User', 'userid');
+            return $this->belongsTo('App\User', 'userid', 'id');
     } 
 }

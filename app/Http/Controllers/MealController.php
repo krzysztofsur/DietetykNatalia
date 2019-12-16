@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Meals;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MealController extends Controller
 {
@@ -13,7 +15,10 @@ class MealController extends Controller
      */
     public function index()
     {
-        return view('Meal.index');
+        $categories = DB::table('product_categories')->get();
+        $products = DB::table('products')->take(100)->get();
+        $meals = DB::table('meals')->take(100)->get();
+        return view('Meal.index',['meals'=> $meals,'products' => $products,'categories'=> $categories]);
     }
 
     /**
@@ -34,7 +39,13 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // if ($request->ajax()) {
+        // $meal = new Meals();
+        // $meal->name = $request->name;
+        // $meal->save();
+        // return $meal->id;
+        // };
+        return 3;
     }
 
     /**
@@ -81,4 +92,49 @@ class MealController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $query=$request->get('query');
+            $category = DB::table('meals')
+                ->where('name', 'like', '%'.$query.'%')
+                ->take(100)
+                ->get();
+            return response(['meals'=>$category]);
+        };
+        
+    }
+
+    public function addIngredient(Request $request)
+    {
+        if ($request->ajax()){
+            $test="zaqw";
+            $meal = Meals::find($request->mealId);
+            $array = [];
+            $tmparr=[
+                "name"=> "",
+                "weight"=>1,
+                "unit"=>"",
+            ];
+            //$meal->products()->attach($request->productId ,['weight'=>$request->weight, 'unit'=>$test]);
+            foreach ($meal->products as $product){
+                $tmparr["name"]=$product->name;
+                $tmparr["weight"]=$product->pivot->weight;
+                $tmparr["unit"]=$product->pivot->unit;
+                array_push($array, $tmparr);
+            };
+            return $array;
+            //return "id: ".$meal->products->weight;
+            //return "(^.^)";
+        };
+    }
+    public function showProducts()
+    {
+        $categories = DB::table('product_categories')->get();
+        $products = DB::table('products')->take(100)->get();
+        return response(['products' => $products,'categories'=> $categories]);
+    }
+
+
 }

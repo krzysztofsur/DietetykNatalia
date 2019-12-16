@@ -33,7 +33,10 @@ Route::group([
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
     
+    /// Meal ///
     Route::resource('meal', 'MealController');
+    Route::post('meal/search', 'MealController@search');
+    Route::post('meal/addIngredient', 'MealController@addIngredient');
 
     /// Product ///
     Route::resource('products', 'ProductController');

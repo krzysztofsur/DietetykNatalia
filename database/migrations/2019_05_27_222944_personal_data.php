@@ -15,14 +15,15 @@ class PersonalData extends Migration
     {
         Schema:: create('personal_data', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('userid');
+            $table->integer('userid')->unsigned();
             $table->string('firstname', 50);
             $table->string('lastname', 100);
-            $table->string('phone', 15);
-            $table->string('email', 100);
+            $table->string('phone', 15)->nullable($value = true);
             $table->enum('sex',['male','female']);
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable($value = true);
             $table->timestamps();
+
+            $table->foreign('userid')->references('id')->on('users');
         });
     }
 
