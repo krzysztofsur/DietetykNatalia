@@ -10,7 +10,14 @@ function showBlogList() {
             $('#blog_list').html("");
             for (let i = 0; i < tab.length; i++) {
                 var tmp = tab[i].updated_at.split(' ')
-                $('#blog_list').append('<tr><td>'+tab[i].title+'</td><td>'+tmp[0]+'</td><td><button class="btn btn-outline-info btn-sm " onclick="blogEdit('+tab[i].id+')">Edit</button><button class="btn btn-outline-warning btn-sm" onclick="blogDelete('+tab[i].id+')">Usuń</button></td></tr>');
+                $('#blog_list').append('<tr>\
+                    <td>'+tab[i].title+'</td>\
+                    <td>'+tmp[0]+'</td>\
+                    <td>\
+                        <button class="btn btn-outline-info btn-sm " onclick="blogEdit('+tab[i].id+')">Edit</button>\
+                        <button class="btn btn-outline-warning btn-sm" onclick="blogDelete('+tab[i].id+')">Usuń</button>\
+                    </td>\
+                </tr>');
             }
         })
         .fail(function () {

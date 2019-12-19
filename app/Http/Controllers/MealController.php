@@ -45,7 +45,7 @@ class MealController extends Controller
         // $meal->save();
         // return $meal->id;
         // };
-        return 3;
+        return 1;
     }
 
     /**
@@ -56,7 +56,7 @@ class MealController extends Controller
      */
     public function show($id)
     {
-        //
+        return Meals::find($id);
     }
 
     /**
@@ -79,7 +79,13 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+        $meal = Meals::find($id);
+        $meal->name = $request->name;
+        $meal->recipe= $request->mealRecipe;
+        $meal->save();
+        return $id." ".$request->name." ".$request->mealRecipe;
+        };
     }
 
     /**
@@ -90,7 +96,11 @@ class MealController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $meal = Meals::find($id);
+        foreach ($meal->products as $product){
+            $product->pivot->delete();
+        };
+        $meal->delete();
     }
 
     public function search(Request $request)
@@ -111,30 +121,32 @@ class MealController extends Controller
         if ($request->ajax()){
             $test="zaqw";
             $meal = Meals::find($request->mealId);
-            $array = [];
-            $tmparr=[
-                "name"=> "",
-                "weight"=>1,
-                "unit"=>"",
-            ];
-            //$meal->products()->attach($request->productId ,['weight'=>$request->weight, 'unit'=>$test]);
-            foreach ($meal->products as $product){
-                $tmparr["name"]=$product->name;
-                $tmparr["weight"]=$product->pivot->weight;
-                $tmparr["unit"]=$product->pivot->unit;
-                array_push($array, $tmparr);
-            };
-            return $array;
-            //return "id: ".$meal->products->weight;
-            //return "(^.^)";
+
+            $meal->products()->attach($request->productId ,['weight'=>$request->weight, 'unit'=>$test]);
+
+
         };
     }
-    public function showProducts()
+    public function deleteIngredient(Request $request)
     {
-        $categories = DB::table('product_categories')->get();
-        $products = DB::table('products')->take(100)->get();
-        return response(['products' => $products,'categories'=> $categories]);
+        $meal = Meals::find($request->id)->delete();
     }
 
-
+    public function showIngredient($id)
+    {
+        $meal = Meals::find($id);
+        $array = [];
+        $tmparr=[
+            "name"=> "",
+            "weight"=>1,
+            "unit"=>"",
+        ];
+        foreach ($meal->products as $product){
+            $tmparr["name"]=$product->name;
+            $tmparr["weight"]=$product->pivot->weight;
+            $tmparr["unit"]=$product->pivot->unit;
+            array_push($array, $tmparr);
+        };
+        return $array;
+    }
 }

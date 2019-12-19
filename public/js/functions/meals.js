@@ -1,6 +1,23 @@
 /// Select ///
 const selectMeal = () =>{
-    console.log("(^.^)");
+    $.ajax({
+        method: "GET",
+        url: "/meal/"+$("#meals").val()[0],
+    })
+    .done(function (msg) {
+        $('#mealId').val(msg.id);
+        $('#mealName').val(msg.name);
+        if(msg.recipe==null){
+            tinymce.get("mealRecipe").execCommand('mceSetContent', false, "");
+        }else{
+            tinymce.get("mealRecipe").execCommand('mceSetContent', false, msg.recipe);
+        }
+        showIngredient($("#meals").val()[0]);
+        $("#products").show();
+    })
+    .fail(function () {
+        toastr.error('Wystąpił błąd');
+    });
 }
 
 /// New/Add Meal ///
@@ -18,30 +35,66 @@ const newMeal = () => {
             processData:false,
         })
         .done(function (msg) {
-            console.log(msg);
             $("#products").show();
             $("#mealId").val(msg);
             $("#productsTable tbody").html("");
+            tinymce.get("mealRecipe").execCommand('mceSetContent', false, "");
         })
         .fail(function () {
             console.log("Wystąpił błąd");
         });
 }
 
-/// Show ingredients ///
-const showIngredients = ()=>{
+/// edit meal ///
+const editMeal = () =>{
+    var form_data = new FormData();
+    var name = $("#mealName").val();
+    form_data.append("_token",$("#_token").val());
+    form_data.append("name",name);
+    form_data.append("_method",'PUT');
+    form_data.append("mealRecipe",tinyMCE.get('mealRecipe').getContent());
     $.ajax({
-        method: "GET",
+        method: "POST",
         url: "/meal/"+$("#mealId").val(),
+        data: form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
     })
     .done(function (msg) {
-        console.log(msg);
+        $("#products").show();
+        $("#mealId").val(msg);
+        $("#productsTable tbody").html("");
+        refreshList();
+    })
+    .fail(function () {
+        console.log("Wystąpił błąd");
+    });
+}
+
+$("#mealId").val(4);
+
+/// Show ingredient ///
+const showIngredient= (id) =>{
+    $.ajax({
+        method: "GET",
+        url: "meal/showIngredient/"+id,
+    })
+    .done(function (msg) {
+        $("#productsTable tbody").html("");
+        msg.forEach(element => {
+            $('#productsTable tbody').append('<tr>\
+            <td>' + element.name + '</td>\
+            <td>' +element.weight + '</td>\
+            <td>'+element.unit+'</td>\
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editIngredientModal">Edytuj</button></td>\
+            </tr>');
+        });
     })
     .fail(function () {
         toastr.error('Wystąpił błąd');
     });
 }
-$("#mealId").val(3);
 
 /// Add ingredient ///
 const addIngredient= ()=>{
@@ -64,12 +117,12 @@ const addIngredient= ()=>{
             processData:false,
         })
         .done(function (msg) {
-            console.log(msg);
-            //showIngredients();
-            $("#productsTable tbody").html("");
-            msg.forEach(element => {
-                $('#productsTable tbody').append('<tr><td>' + element.name + '</td><td>' +element.weight + '</td><td>'+element.unit+'</td></tr>');
-            });
+            
+            $("#product").val("")[0];
+            $("#productWeight").val("")
+            $("#product_search_category").val(0)
+            $("#product_search").val("")
+            $("#addIngredientModal").modal("hide");
         })
         .fail(function () {
             console.log("Wystąpił błąd");
@@ -118,7 +171,6 @@ const refreshList = () =>{
         })
             .done(function (msg) {
                 $('#meals').html("");
-                console.log("(^.^)");
                 msg.meals.forEach(element => {
                     $('#meals').append('<option value="' + element.id + '">' +element.name + '</option>');
                 });
@@ -126,3 +178,29 @@ const refreshList = () =>{
             .fail(function (msg) {
         });   
 }
+
+/// Delete meal ///
+function deleteMeal() {
+    var _token = $("#_token").val();
+    var data={
+        url: "/meal/"+$("#mealId").val(),
+        data: {
+            "_token": _token,
+            "id": $("#mealId").val()
+        },
+        ifDone: function() { refreshList()},
+    };
+    ajax_delete(data);  
+};
+function deleteIngredient(id) {
+    var _token = $("#_token").val();
+    var data={
+        url: "/deleteIngredient",
+        data: {
+            "_token": _token,
+            "id": id
+        },
+        ifDone: function() { refreshList()},
+    };
+    ajax_delete(data);  
+};

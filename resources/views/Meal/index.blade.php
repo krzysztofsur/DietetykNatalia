@@ -21,8 +21,8 @@
     </select>
   </div>
   <div class="col-lg-7 pull-right">
-    <label for="mealName">Nazwa posiłku</label>
     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+    <label for="mealName">Nazwa posiłku</label>
     <input type="text" class="form-control" id="mealName">
     <button onclick="newMeal()">Nowy Posiłek</button>
     <br>
@@ -42,17 +42,12 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
-            <td><button data-toggle="modal" data-target="#exampleModalCenter2">Edit</button></td>
-          </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <td><button data-toggle="modal" data-target="#editIngredientModal">Edit</button></td>
           </tr>
         </tbody>
       </table>
       
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addIngredientModal">
         add
       </button>
 
@@ -60,35 +55,19 @@
         <label for="mealRecipe">Przepis</label>
         <textarea id="mealRecipe" style="width:100%"></textarea>
       </div>
+      <div class="row">
+        <button onclick="editMeal()">Zapisz</button>
+        <button onclick="deleteMeal()">Delete</button>
+      </div>
     </div>
-    
-    <!--
-            -jeżeli zmienisz zapisz w tablicy id, opcja: change 
-            -jeżeli usuniesz zapisz w tablicy id, opcja: delete
-            -jeżeli dodajesz zapisz w tablicy id, opcja: add
-            {
-                tablica=[{
-                    id:id,
-                    opcja:"opcja",
-                    argument:[]
-                },
-                ]
-            }
-
-            html{
-              background: black;
-              filter invert(1) hue-rotate(180deg)
-            }
-    -->
-
 
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addIngredientModal">
       addIngredientModal
     </button>
 
-    <!-- ModalOne -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editIngredientModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -99,7 +78,27 @@
             </button>
           </div>
           <div class="modal-body">
-            ...add
+            
+            <input type="hidden" id="ingredientId">
+            <label for="product">Lista produktów</label>
+            <input type="text" class="form-control" id="product_search" oninput="refreshProductList()" placeholder="Szukaj...">
+            <select class="form-control show-tick" onchange="refreshProductList()" id="product_search_category">
+                    <option value="0">Wybierz kategorię</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id}}">{{ $category->name}}</option>
+                @endforeach
+            </select>
+            <br/>
+            <select multiple class="form-control" id="product">
+                @foreach ($products as $product)
+                <option value="{{ $product->id}}">{{ $product->name}}</option>
+                @endforeach
+            </select>
+
+            <div class="row">
+              <label for="mealRecipe">Ilość</label>
+              <input type="number" class="form-control" id="productWeight" value="0">
+            </div>
 
 
 
@@ -111,10 +110,10 @@
         </div>
       </div>
     </div>
-    <!-- ModalOneEnd -->
+    <!-- Edit Modal End -->
 
 
-    <!-- addIngredientModal -->
+    <!-- Add Modal -->
     <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -150,12 +149,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addIngredient()">Save changes</button>
+          <button type="button" class="btn btn-primary" onclick="addIngredient()">Save changes</button>
         </div>
       </div>
     </div>
     </div>
-    <!-- addIngredientModal END -->
+    <!-- Add Modal End -->
 
 
 

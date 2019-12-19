@@ -39,34 +39,11 @@ class HomeController extends Controller
         //$name=$create->measurement($tab);
         $name = "natt";
         //$test= bcrypt();
-        
-        $meal = Meals::find(3);
-        $array = [];
-        $tmparr=[
-            "name"=> "",
-            "weight"=>1,
-            "unit"=>"",
-        ];
-        //$meal->products()->attach($request->productId ,['weight'=>$request->weight, 'unit'=>$test]);
-        foreach ($meal->products as $product){
-            $tmparr["name"]=$product->name;
-            $tmparr["weight"]=$product->pivot->weight;
-            $tmparr["unit"]=$product->pivot->unit;
-            array_push($array, $tmparr);
-        };
-        var_dump($array);
-        foreach($array as $arr){
-            echo $arr["name"];
-            echo $arr["weight"];
-            echo "<br>";
-        }
-
-
 
 
         //$test= $this->salt("1234567899", $name);
         //var_dump($tab["test2"]);
-        //return view('home',['test' => $name]);
+        return view('home',['test' => $name]);
     }
 
     function salt($password, $name)

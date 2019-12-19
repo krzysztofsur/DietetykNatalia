@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <td>Imie</td>
+                    <td>Nazwisko</td>
                     <td>Email</td>
                     <td></td>
                 </tr>
@@ -33,4 +34,5 @@
         {{ $users->links() }}
     </div>
 </div>
+
 @endsection

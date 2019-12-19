@@ -57,7 +57,9 @@ class UserListController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('Users.List.show',  ['user' => $user]);
+        $personalData= $user->personaldata;
+        $measurement= $user->measurement;
+        return view('Users.List.show',  ['user' => $user, 'personalData' => $personalData, 'measurement' => $measurement]);
     }
 
     /**
