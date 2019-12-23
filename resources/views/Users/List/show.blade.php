@@ -11,43 +11,54 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs tab-nav-right" role="tablist">
-            <li role="presentation" class="active"><a href="#personalData" data-toggle="tab">HOME</a></li>
-            <li role="presentation"><a href="#profile" data-toggle="tab">PROFILE</a></li>
+            <li role="presentation" class="active"><a href="#personalData" data-toggle="tab">Dane</a></li>
+            <li role="presentation"><a href="#profile" data-toggle="tab">Pomiary</a></li>
             <li role="presentation"><a href="#messages_animation_1" data-toggle="tab">MESSAGES</a></li>
             <li role="presentation"><a href="#settings_animation_1" data-toggle="tab">SETTINGS</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
+
             <div role="tabpanel" class="tab-pane animated flipInX active" id="personalData">
-                <b>Dane Personalne</b>
-                <p>Imie:</p>
-                <p>{{ $personalData->firstname}}</p>
-                
-                <p>
-                    <table style="width: 100%;">
-                        <thead>
-                            <tr>
-                                <td>Email</td>
-                                <td>Imie i Nazwisko</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody id="blog_list">
-                            <tr>
-                                <td>{{ $user->email}}</td>
-                                <td>{{ $personalData->firstname}} {{ $personalData->lastname}}</td>
-                                <td>
-                                    <button class="btn btn-outline-info btn-sm"
-                                        onclick="window.location.href='/userList/{{ $user->id}}'">Szczegóły</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </p>
+                <h4>Dane Personalne</h4>
+                <div class="col-md-6">
+                    <label for="firstname">Imie:</label>
+                    <p id="firstname">{{ $personalData->firstname}}</p>
+
+                    <label for="lastname">Nazwisko:</label>
+                    <p id="lastname">{{ $personalData->firstname}}</p>
+
+                    <label for="sex">Płeć:</label>
+                    <p id="sex">{{ $gender }}</p>
+
+                </div>
+
+                <div class="col-md-6">
+                    <label for="birthdate">Data urodzenia:</label>
+                    <p id="birthdate">{{ $personalData->birthdate }} ({{$age}}) </p>
+
+                    <label for="phone">Telefon:</label>
+                    <p id="phone">{{ $personalData->phone }}</p>
+
+                    <label for="email">Email:</label>
+                    <p id="email">{{ $user->email }}</p>
+
+
+
+                </div>
             </div>
+
             <div role="tabpanel" class="tab-pane animated flipInX" id="profile">
-                <b>Profile Content</b>
+                    <h4>Pomiary</h4>
+                    <div class="col-md-6">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                    </div>
+                <!-- $measurement -->
                 <p>
                     Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation
                     electram moderatius.
@@ -56,7 +67,7 @@
                     gubergren sadipscing mel.
                 </p>
             </div>
-            
+
             <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
                 <b>Message Content</b>
                 <p>

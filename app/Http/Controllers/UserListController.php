@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -58,8 +59,19 @@ class UserListController extends Controller
     {
         $user = User::find($id);
         $personalData= $user->personaldata;
+        $years = Carbon::parse($personalData->birthdate)->age;
+        $gender=\App\Classes\WebHelper::initialization()->getGender($personalData->sex);
+
         $measurement= $user->measurement;
-        return view('Users.List.show',  ['user' => $user, 'personalData' => $personalData, 'measurement' => $measurement]);
+        
+        return view('Users.List.show',  
+        [
+            'user' => $user,
+            'personalData' => $personalData, 
+            'measurement' => $measurement, 
+            'age'=>$years,
+            'gender'=>$gender
+            ]);
     }
 
     /**

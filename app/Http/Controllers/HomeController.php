@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Classes\UserRelationships;
 use App\Meals;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -39,7 +40,9 @@ class HomeController extends Controller
         //$name=$create->measurement($tab);
         $name = "natt";
         //$test= bcrypt();
-
+        $user = User::find(3);
+        $personalData= $user->personaldata;
+        $name=\App\Classes\WebHelper::initialization()->getGender($personalData->sex);
 
         //$test= $this->salt("1234567899", $name);
         //var_dump($tab["test2"]);
