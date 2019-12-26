@@ -1,0 +1,186 @@
+--1 produkty dokończyć
+2 tworzenie posiłków
+--3 tworzenie usera z relacjami
+4 przypisywanie dity do usera
+5 liczenie norm
+6 dodawanie prodkutów / posiłków w decie
+
+
+NOTE:
+
+meals:
+  edycja składników
+  usuwanie składników button
+
+wysyłanie meila przez admina
+
+user:
+  --sex rename
+  
+dieta:
+  modal{
+  dodawanie diety do usera:
+    dzień od
+    dzień do
+    tytuł
+  
+  edycja diety:
+    dzień od do
+    tytuł
+  }
+  usuwanie diety usera
+
+  dieta dzień:
+    edycja dni
+    podział na posiłki?
+    ilość posiłków?
+      tabela edytowana wyświetlanie forEatch 
+        JSON? 
+        PHP?
+
+
+
+Pytania:
+1. Ilość posiłków ma być do dnia czy całej diaty od do daty?
+    gdzie to ma być zmieniane?
+
+2. ilość posiłków:
+  a) takie mają być nazwy?
+    Śniadanie 
+    Drugie śniadanie 
+    Obiad 
+    Podwieczorek 
+    Przekąska 
+    posiłek przed treningowy 
+    posiłek po treningowy 
+    Kolacja 
+  b) jak to ma być zmieniane nazwy w zależności od ilości posiłków?
+    np. 4 posiłki:
+      -śniadanie
+      -obiad
+      -Podwieczorek
+      -Kolacja
+    
+
+3. tworzenie diety zakres dni od do, tytuł coś jeszcze?
+
+4. produkty: czy można przyjąć że produkty wartości produktów są podawane w 100g produktu?
+
+5 posiłki miary:
+  -szklanka(250g)
+  -łyżka(15g)
+  -łyżeczka(5g)
+  -sztuka(podane przy tworzeniu posiłku)
+  a) jakieś jeszcze?
+  b) czy mają być inne wartości (g)
+
+
+recepis-> button add new
+
+tworzenie posiłków product_has_meal->id->longInt
+
+
+theme admin panel bootstrap
+
+
+export default <fun name>;
+import <fun name> from './'
+
+const run = () => {
+
+};
+
+html{
+background: black;
+filter invert(1) hue-rotate(180deg)
+}
+
+
+
+file:///C:/Users/Fish/Desktop/inz/AdminBSBMaterialDesign-master/pages/forms/basic-form-elements.html
+
+diety
+-od
+-do
+-nazwa
+-
+
+diety:
+add
+,delete,
+
+produkty table
+
+dieta wybór? 
+
+dieta odświerz? tak
+
+dieta check? date
+
+wiele diet? tak
+
+aktywacja diet?
+
+user->diety->dodaj(ile dni?)->dieta dzień po dacie 
+
+wyszukiwanie produktów kategorie? (or? and?) nazwa? kategoria->nazwa
+
+tworzenie diety przedział datowy
+
+dieta dzień data
+
+szukanie pacjęta
+
+produkty:
+--cholesterol
+--sód 
+--potas
+--wapń
+--żelazo
+--witamina c
+--witamina b12
+--białka 
+--węgle 
+--tłuszcze
+--błonnik
+--kwasy nasycone
+--nienasycone 
+
+
+analiza składu ciała (%, kg)
+tłuszcz woda mięśnie kości wiek biologiczny
+
+masa do jakiej dąży 
+
+lubiane, nielubiane produkty (input text)
+
+pacjęt ile je posiłków 
+
+natka ustawia ilość posiłków 
+
+str gł
+
+blog x3 posty
+
+
+
+
+kontakt 
+form 
+link inst
+tel
+
+
+
+współpraca
+
+
+
+
+
+
+
+
+
+
+https://github.com/gurayyarar/AdminBSBMaterialDesign

@@ -44,6 +44,11 @@ class User extends Authenticatable
             return $this->hasOne('App\Measurement', 'userid');
     } 
 
+    public function userDiets()
+    {
+            return $this->hasMany('App\UserDiets', 'userid');
+    } 
+
     public function personaldata()
     {
             return $this->hasOne('App\PersonalData', 'userid');

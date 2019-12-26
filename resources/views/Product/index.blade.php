@@ -10,7 +10,7 @@
 <button onclick="window.location.href='/addCategory'" class="btn bg-blue waves-effect pull-right">Dodaj kategorię</button>
 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         <label for="product">Lista produktów</label>
         <input type="text" class="form-control" id="product_search" oninput="refreshList()" placeholder="Szukaj...">
         <select class="form-control show-tick" onchange="refreshList()" id="product_search_category">
@@ -26,7 +26,7 @@
             @endforeach
         </select>
     </div>
-    <div class="col-lg-8">
+    <div class="col-sm-8">
         <div class="row">
             <div class="col-sm-6">
                 <label for="product_name">Nazwa</label>
@@ -41,62 +41,62 @@
                 </select>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_bl">Białka</label>
                 <input type="number" class="form-control" id="product_protein" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_wegle">Węglowodany</label>
                 <input type="number" class="form-control" id="product_carbohydrates" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_fats">Tłuszcze</label>
                 <input type="number" class="form-control" id="product_fats" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_calories">Kalorie</label>
                 <input type="number" class="form-control" id="product_calories" value="0">
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_Ca">Ca</label>
                 <input type="number" class="form-control" id="product_Ca" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_K">K</label>
                 <input type="number" class="form-control" id="product_K" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_Fe">Fe</label>
                 <input type="number" class="form-control" id="product_Fe" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_Na">Na</label>
                 <input type="number" class="form-control" id="product_Na" value="0">
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_blonnik">Błonnik</label>
                 <input type="number" class="form-control" id="product_blonnik" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_vitamin_c">Witamina C</label>
                 <input type="number" class="form-control" id="product_vitamin_c" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_kwasy_nasycone">Kwasy nasycone</label>
                 <input type="number" class="form-control" id="product_kwasy_nasycone" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_kwasy_nienasycone">Kwasy nienasycone</label>
                 <input type="number" class="form-control" id="product_kwasy_nienasycone" value="0">
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_cholesterol">cholesterol</label>
                 <input type="number" class="form-control" id="product_cholesterol" value="0">
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 col-xs-6">
                 <label for="product_vitamin_b12">Witamina B12</label>
                 <input type="number" class="form-control" id="product_vitamin_b12" value="0">
             </div>

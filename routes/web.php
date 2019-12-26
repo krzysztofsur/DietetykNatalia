@@ -29,9 +29,11 @@ Route::group([
     Route::get('/userRequest_Creator/{id}', 'UserRequestController@showCreator');
     Route::resource('recipes', 'RecipesController');
 
+    /// User ///
     Route::resource('userRequest', 'UserRequestController');
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
+    Route::resource('userList/{idUser}/diet', 'UserDietsController');
     
     /// Meal ///
     Route::resource('meal', 'MealController');

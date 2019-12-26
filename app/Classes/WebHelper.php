@@ -16,4 +16,25 @@ class WebHelper{
             return "mężczyzna";
         }
     }
+    public function unitConverter($unit)
+    {
+        switch ($unit) {
+            case 'szkl':
+                $resoult= 250;
+                break;
+            case 'lyzka':
+                $resoult= 15;
+                break;
+            case 'lyzeczka':
+                $resoult= 5;
+                break;
+            case 'szczypta':
+                $resoult= 5/8;
+                break;
+            default:
+                $resoult= 1;
+                break;
+        }
+        return $resoult/100;
+    }
 }

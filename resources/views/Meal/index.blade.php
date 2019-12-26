@@ -38,12 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><button data-toggle="modal" data-target="#editIngredientModal">Edit</button></td>
-          </tr>
+          
         </tbody>
       </table>
       
