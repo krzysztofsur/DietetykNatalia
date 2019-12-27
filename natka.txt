@@ -75,6 +75,26 @@ Pytania:
   b) czy mają być inne wartości (g)
 
 
+
+
+diet:
+  dietD{
+    -id looong
+    - date
+    - table
+    - 
+  }
+
+
+
+
+
+
+
+
+
+
+
 recepis-> button add new
 
 tworzenie posiłków product_has_meal->id->longInt

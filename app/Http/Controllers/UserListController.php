@@ -71,7 +71,7 @@ class UserListController extends Controller
             'measurement' => $measurement, 
             'age'=>$years,
             'gender'=>$gender
-            ]);
+        ]);
     }
 
     /**

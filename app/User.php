@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function userDiets()
     {
-            return $this->hasMany('App\UserDiets', 'userid');
+            return $this->hasMany('App\Diets', 'userid');
     } 
 
     public function personaldata()

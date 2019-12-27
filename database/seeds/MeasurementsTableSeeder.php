@@ -1,6 +1,7 @@
 <?php
 
 use App\Measurement;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class MeasurementsTableSeeder extends Seeder

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Diets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserDietsController extends Controller
+class DietsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +16,7 @@ class UserDietsController extends Controller
      */
     public function index($idUser)
     {
-        $users = DB::table('users')
-            ->join('roles_has_users', 'users.id', '=', 'roles_has_users.user_id')
-            ->join('roles', 'roles_has_users.role_id', '=', 'roles.id')
-            ->select('users.*')
-            ->where('roles.name', '=', 'User')
-            ->paginate(10);
+        $users = Diets::where('userid','=', $idUser)->paginate(10);
         return view('Users.Diets.index', ['idUser'=>$idUser,'diets'=>$users]);
     }
 
@@ -39,9 +36,20 @@ class UserDietsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($idUser, Request $request)
     {
-        //
+        if ($request->ajax()) {
+        $diets = new Diets();
+        $diets->title = $request->title;
+        $diets->dateFrom = $request->dateFrom;
+        $diets->dateTo = $request->dateTo;
+        $diets->userid = $idUser;
+        $diets->save();
+
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateTo);
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
+        return $to->diffInDays($from);
+        };
     }
 
     /**
@@ -75,7 +83,7 @@ class UserDietsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id;
     }
 
     /**

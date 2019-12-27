@@ -33,7 +33,7 @@ Route::group([
     Route::resource('userRequest', 'UserRequestController');
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
-    Route::resource('userList/{idUser}/diet', 'UserDietsController');
+    Route::resource('userList/{idUser}/diet', 'DietsController');
     
     /// Meal ///
     Route::resource('meal', 'MealController');

@@ -8,54 +8,48 @@
 
 
 @section('main')
+<div class="row m-b-10">
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addDietModal">
+        add
+    </button>
+</div>
 
 <div class="row">
-
-
-
-    <div class="col-xs-12">
-        @foreach ($diets as $diet)
-            <div class="col-xs-10">
-                <h4>{{ $diet->name }}</h4>
-            </div>
-            <div class="col-xs-2">
-                <button class="btn btn-outline-info btn-sm pull-right" onclick="window.location.href='/userList/{{ $idUser }}/diet/{{ $diet->id }}'">
-                    Szczegóły
-                </button>
-            </div>
-        @endforeach
-        {{ $diets->links() }}
-
-    
-    </div>
-
     <table style="width: 100%;">
         <thead>
             <tr>
-                <td>Imie</td>
-                <td>Nazwisko</td>
+                <td>Tytuł</td>
+                <td>Data od</td>
+                <td>Data do</td>
+                <td></td>
                 <td></td>
             </tr>
         </thead>
         <tbody id="blog_list">
-            @foreach ($diets as $user)
+            @foreach ($diets as $diet)
             <tr>
-                <td>{{ $user->name}}</td>
-                <td>{{ $user->email}}</td>
+                <td>{{ $diet->title}}</td>
+                <td>{{ $diet->dateFrom}}</td>
+                <td>{{ $diet->dateTo}}</td>
 
                 <td>
-                    <button class="btn btn-outline-info btn-sm pull-right" onclick="window.location.href='/userList/{{ $user->id}}'">Szczegóły</button>
+                    <button class="btn btn-outline-info btn-sm" onclick="editDiet({{ $diet->id }})">Edit</button>
                 </td>
+                <td>
+                    <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userList/{{ $idUser }}/diet/{{ $diet->id }}'">Szczegóły</button>
+                </td>
+
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $diets->links() }}
 
 </div>
 
 
 <!-- Add Modal -->
-<div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="addDietModal" tabindex="-1" role="dialog"
 aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
@@ -66,31 +60,28 @@ aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
       </button>
     </div>
     <div class="modal-body">
-
-        <div class="col-xs-6">
-            <h2 class="card-inside-title">Range</h2>
-            <div class="input-daterange input-group" id="bs_datepicker_range_container">
+        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+        <div class="m-b-10">
+            <label for="dietTitle">Tytuł</label>
+            <input type="text" class="form-control" id="dietTitle">
+        </div>
+        <div>
+            <label for="range_data">Zakres dat</label>
+            <div class="input-daterange input-group" id="range_data">
                 <div class="form-line">
-                    <input type="text" class="form-control" placeholder="Date start...">
+                    <input type="text" id="dateFrom" class="form-control" placeholder="Date start...">
                 </div>
-                <span class="input-group-addon">to</span>
+                <span class="input-group-addon">do</span>
                 <div class="form-line">
-                    <input type="text" class="form-control" placeholder="Date end...">
+                    <input type="text" id="dateTo" class="form-control" placeholder="Date end...">
                 </div>
             </div>
-        </div>
-
-
-
-        <div class="row">
-          <label for="mealRecipe">Ilość</label>
-          <input type="number" class="form-control" id="productWeight" value="0">
         </div>
 
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary" onclick="addIngredient()">Save changes</button>
+      <button type="button" class="btn btn-primary" onclick="addDiet()">Save changes</button>
     </div>
   </div>
 </div>
@@ -105,11 +96,5 @@ aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
 
 @section('script')
 <script src="{{ asset('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
-<script>
-
-    $('#bs_datepicker_range_container').datepicker({
-        autoclose: true,
-        container: '#bs_datepicker_range_container'
-    });
-</script>
+<script src="{{ asset('js/functions/diets.js') }}"></script>
 @endsection
