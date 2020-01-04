@@ -74,17 +74,17 @@
           </div>
           <div class="modal-body">
             
-            <input type="hidden" id="ingredientId">
+            <input type="hidden" id="ingredientIdEdit">
             <label for="product">Lista produktów</label>
-            <input type="text" class="form-control" id="product_search" oninput="refreshProductList()" placeholder="Szukaj...">
-            <select class="form-control show-tick" onchange="refreshProductList()" id="product_search_category">
+            <input type="text" class="form-control" id="product_searchEdit" oninput="refreshProductListEdit()" placeholder="Szukaj...">
+            <select class="form-control show-tick" onchange="refreshProductListEdit()" id="product_search_categoryEdit">
                     <option value="0">Wybierz kategorię</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id}}">{{ $category->name}}</option>
                 @endforeach
             </select>
             <br/>
-            <select multiple class="form-control" id="product">
+            <select multiple class="form-control" id="productEdit">
                 @foreach ($products as $product)
                 <option value="{{ $product->id}}">{{ $product->name}}</option>
                 @endforeach
@@ -92,15 +92,16 @@
 
             <div class="row">
               <label for="mealRecipe">Ilość</label>
-              <input type="number" class="form-control" id="productWeight" value="0">
+              <input type="number" class="form-control" id="productWeightEdit" value="0">
             </div>
 
 
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="button" class="btn btn-primary" onclick="deleteIngredient()">Usuń</button>
+            <button type="button" class="btn btn-primary" onclick="editIngredient()">Zapisz</button>
           </div>
         </div>
       </div>
@@ -143,8 +144,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="addIngredient()">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <button type="button" class="btn btn-primary" onclick="addIngredient()">Zapisz</button>
         </div>
       </div>
     </div>

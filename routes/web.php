@@ -34,11 +34,13 @@ Route::group([
     Route::resource('createUser', 'UserCreateController');
     Route::resource('userList', 'UserListController');
     Route::resource('userList/{idUser}/diet', 'DietsController');
+    Route::get('userList/{idUser}/diet/select/{id}', 'DietsController@select');
     
     /// Meal ///
     Route::resource('meal', 'MealController');
     Route::post('meal/search', 'MealController@search');
     Route::post('meal/addIngredient', 'MealController@addIngredient');
+    Route::put('meal/editIngredient', 'MealController@editIngredient');
     Route::DELETE('meal/deleteIngredient', 'MealController@deleteIngredient');
     Route::get('/meal/showIngredient/{id}', 'MealController@showIngredient');
 

@@ -5,6 +5,39 @@ $('#range_data').datepicker({
     container: '#range_data'
     
 });
+$('#range_data_edit').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    container: '#range_data_edit'
+    
+});
+/// Clean input ///
+const cleanInputs= () =>{
+    $("#dietTitle").val("");
+    $("#range_data").datepicker("clearDates");
+    $("#dietTitleEdit").val("");
+    $("#range_dataEdit").datepicker("clearDates");
+}
+/// Select Diet ///
+
+const selectDiet = (id) =>{
+    console.log(id);
+    $.ajax({
+        method: "GET",
+        url: window.location.href+'/select/'+id,
+    })
+    .done(function (msg) {
+        //console.log(msg);
+        console.log(msg.id);
+
+        $('#dietTitleEdit').val(msg.title);
+        $('#dateFromEdit').val(msg.dateFrom);
+        $('#dateToEdit').val(msg.dateTo);
+    })
+    .fail(function () {
+        toastr.error('Wystąpił błąd');
+    });
+}
 
 /// Add Diet ///
 
@@ -28,8 +61,7 @@ const addDiet = () => {
         })
         .done(function (msg) {
             console.log(msg);
-            $("#dietTitle").val("");
-            $("#range_data").datepicker("clearDates");
+            cleanInputs();
             $("#addDietModal").modal("hide");
         })
         .fail(function () {
@@ -40,9 +72,9 @@ const addDiet = () => {
 /// Edit Diet ///
 
 const editDiet = (id) => {
-    var title = $('#dietTitle').val();
-    var dateFrom = $('#dateFrom').val();
-    var dateTo = $('#dateTo').val();
+    var title = $('#dietTitleEdit').val();
+    var dateFrom = $('#dateFromEdit').val();
+    var dateTo = $('#dateToEdit').val();
 
     var form_data = new FormData();
     form_data.append("_token",$("#_token").val());
@@ -60,8 +92,7 @@ const editDiet = (id) => {
         })
         .done(function (msg) {
             console.log(msg);
-            $("#dietTitle").val("");
-            $("#range_data").datepicker("clearDates");
+            cleanInputs();
             $("#addDietModal").modal("hide");
         })
         .fail(function () {

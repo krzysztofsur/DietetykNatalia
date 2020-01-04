@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Meals;
+use App\ProductsHasMeals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -127,9 +128,15 @@ class MealController extends Controller
 
         };
     }
+
+    public function editIngredient(Request $request)
+    {
+        return "(^.^)";
+    }
+
     public function deleteIngredient(Request $request)
     {
-        $meal = Meals::find($request->id)->delete();
+        ProductsHasMeals::find($request->id)->delete();
     }
 
     public function showIngredient($id)

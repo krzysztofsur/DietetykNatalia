@@ -71,13 +71,40 @@ Pytania:
   -łyżka(15g)
   -łyżeczka(5g)
   -sztuka(podane przy tworzeniu posiłku)
+  
+  -plasetr(x)
+  -kubek(x)
+  
   a) jakieś jeszcze?
   b) czy mają być inne wartości (g)
 
 
+//////////////
+/// ToDo: ///
+////////////
+
+  diets:
+    -refersh
+    -edit
+    -add dietD
+    -show
+
+  dietD:
+    -DB migration
+    -add table 
+    -dodawanie posiłku/produktu (modal)
+
+  meals:
+    -ingridians edit
+    -ingridians delete
+
+/////////////////
+/// End ToDo ///
+///////////////
 
 
-diet:
+
+DB diet:
   dietD{
     -id looong
     - date

@@ -16,8 +16,9 @@ class DietsController extends Controller
      */
     public function index($idUser)
     {
-        $users = Diets::where('userid','=', $idUser)->paginate(10);
-        return view('Users.Diets.index', ['idUser'=>$idUser,'diets'=>$users]);
+        //simplePaginate
+        $diets = Diets::where('userid','=', $idUser)->paginate(2);
+        return view('Users.Diets.index', ['idUser'=>$idUser,'diets'=>$diets]);
     }
 
     /**
@@ -25,9 +26,10 @@ class DietsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idUser)
     {
-        //
+        $diets = Diets::where('userid','=', $idUser)->paginate(2);
+        return response(['diets'=>$diets]);
     }
 
     /**
@@ -81,9 +83,14 @@ class DietsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$idUser, $id)
     {
-        return $id;
+        $diet= Diets::find($id);
+        $diet->title = $request->title;
+        $diet->dateTo = $request->dateTo;
+        $diet->dateFrom = $request->dateFrom;
+        $diet->save();
+        //return $id;
     }
 
     /**
@@ -95,5 +102,10 @@ class DietsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function select($idUser,$id)
+    {
+        //return $id;
+        return Diets::find($id);
     }
 }
