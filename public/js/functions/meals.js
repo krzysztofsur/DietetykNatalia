@@ -87,7 +87,7 @@ const showIngredient= (id) =>{
             <td>' + element.name + '</td>\
             <td>' +element.weight + '</td>\
             <td>'+element.unit+'</td>\
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="selectIngredient('+element.id+')" data-target="#editIngredientModal">Edytuj</button></td>\
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="selectIngredient('+element.id+')" data-target="#IngredientModal">Edytuj</button></td>\
             </tr>');
         });
     })
@@ -104,9 +104,6 @@ const addIngredient= ()=>{
     form_data.append("productId",productId);
     form_data.append("weight",$("#productWeight").val());
     form_data.append("mealId",$("#mealId").val());
-    console.log(productId);
-    console.log($("#mealId").val());
-    console.log($("#productWeight").val());
 
     $.ajax({
             method: "POST",
@@ -122,7 +119,8 @@ const addIngredient= ()=>{
             $("#productWeight").val("")
             $("#product_search_category").val(0)
             $("#product_search").val("")
-            $("#addIngredientModal").modal("hide");
+            $("#IngredientModal").modal("hide");
+            showIngredient($("#mealId").val());
         })
         .fail(function () {
             console.log("Wystąpił błąd");
@@ -154,34 +152,6 @@ function refreshProductList(){
 
         });   
 }
-
-/// Refresh Edit Product List ///
-function refreshProductListEdit(){
-    var form_data = new FormData();
-    var query = $("#product_searchEdit").val();
-    var query_cat = $("#product_search_categoryEdit").val();
-    form_data.append("_token",$("#_token").val());
-    form_data.append("query",query);
-    form_data.append("query_cat",query_cat);
-    $.ajax({
-        method: "POST",
-        url: "/products/search",
-        data: form_data,
-        contentType:false,
-        cache:false,
-        processData:false,
-        })
-            .done(function (msg) {
-                $('#productEdit').html("");
-                msg.products.forEach(element => {
-                    $('#productEdit').append('<option value="' + element.id + '">' +element.name + '</option>');
-                });
-            })
-            .fail(function (msg) {
-
-        });   
-}
-
 
 /// Refresh list meal ///
 const refreshList = () =>{
@@ -221,40 +191,43 @@ const deleteMeal= () =>{
     ajax_delete(data);  
 }
 
-/// Dekete ingredient ///
-const deleteIngredient = () =>{
+/// Delete ingredient ///
+const deleteIngredient = (id) =>{
     var _token = $("#_token").val();
     var data={
-        url: window.location.href+"/deleteIngredient",
+        url: window.location.href+"/deleteIngredient/"+id,
         data: {
             "_token": _token,
             "id": id
         },
-        ifDone: function() { refreshList()},
+        ifDone: function() {  
+            showIngredient($("#mealId").val());
+            $("#IngredientModal").modal("hide");
+        },
     };
     ajax_delete(data);  
 }
 
 /// edit ingredient ///
-const editIngredient =() =>{
+const editIngredient =(id) =>{
     var form_data = new FormData();
-    var productId = $("#productEdit").val()[0];
+    var productId = $("#product").val()[0];
     form_data.append("_token",$("#_token").val());
     form_data.append("productId",productId);
-    form_data.append("weight",$("#productWeightEdit").val());
-    form_data.append("mealId",$("#mealId").val());
+    form_data.append("weight",$("#productWeight").val());
     form_data.append("_method",'PUT');
 
     $.ajax({
             method: "POST",
-            url: window.location.href+"/editIngredient",
+            url: window.location.href+"/editIngredient/"+id,
             data: form_data,
             contentType:false,
             cache:false,
             processData:false,
         })
         .done(function (msg) {
-            $("#editIngredientModal").modal("hide");
+            $("#IngredientModal").modal("hide");
+            showIngredient($("#mealId").val());
         })
         .fail(function () {
             console.log("Wystąpił błąd");
@@ -262,20 +235,30 @@ const editIngredient =() =>{
 }
 
 /// Select ingredient ///
-const selectIngredient =() =>{
+const selectIngredient =(id) =>{
     $.ajax({
         method: "GET",
-        url: "/meal/"+$("#meals").val()[0],
-        url: window.location.href+"/editIngredient",
-
+        url: window.location.href+"/selectIngredient/"+id,
     })
     .done(function (msg) {
-        $("#productWeightEdit").val(msg.weight);
-        $("#product_searchEdit").val(msg.name)
-        refreshProductListEdit()
+        $("#productWeight").val(msg.weight);
+        $("#product_search").val(msg.name)
+        $('#IngredientModal .modal-footer').html('\
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
+            <button type="button" class="btn btn-primary" onclick="deleteIngredient('+id+')">Usuń</button>\
+            <button type="button" class="btn btn-primary" onclick="editIngredient('+id+')">Zapisz</button>\
+        ')
+        refreshProductList()
 
     })
     .fail(function () {
         toastr.error('Wystąpił błąd');
     });
 }
+
+const modalAdd =()=>{
+    $('#IngredientModal .modal-footer').html('\
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
+            <button type="button" class="btn btn-primary" onclick="addIngredient()">Zapisz</button>\
+    ')
+} 

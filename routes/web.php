@@ -40,9 +40,10 @@ Route::group([
     Route::resource('meal', 'MealController');
     Route::post('meal/search', 'MealController@search');
     Route::post('meal/addIngredient', 'MealController@addIngredient');
-    Route::put('meal/editIngredient', 'MealController@editIngredient');
-    Route::DELETE('meal/deleteIngredient', 'MealController@deleteIngredient');
+    Route::put('meal/editIngredient/{id}', 'MealController@editIngredient');
+    Route::DELETE('meal/deleteIngredient/{id}', 'MealController@deleteIngredient');
     Route::get('/meal/showIngredient/{id}', 'MealController@showIngredient');
+    Route::get('/meal/selectIngredient/{id}', 'MealController@selectIngredient');
 
     /// Product ///
     Route::resource('products', 'ProductController');

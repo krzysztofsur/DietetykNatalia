@@ -90,7 +90,7 @@ class DietsController extends Controller
         $diet->dateTo = $request->dateTo;
         $diet->dateFrom = $request->dateFrom;
         $diet->save();
-        //return $id;
+        return $id;
     }
 
     /**

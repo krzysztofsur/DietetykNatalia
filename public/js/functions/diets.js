@@ -5,12 +5,7 @@ $('#range_data').datepicker({
     container: '#range_data'
     
 });
-$('#range_data_edit').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true,
-    container: '#range_data_edit'
-    
-});
+
 /// Clean input ///
 const cleanInputs= () =>{
     $("#dietTitle").val("");
@@ -18,8 +13,8 @@ const cleanInputs= () =>{
     $("#dietTitleEdit").val("");
     $("#range_dataEdit").datepicker("clearDates");
 }
-/// Select Diet ///
 
+/// Select Diet ///
 const selectDiet = (id) =>{
     console.log(id);
     $.ajax({
@@ -27,12 +22,16 @@ const selectDiet = (id) =>{
         url: window.location.href+'/select/'+id,
     })
     .done(function (msg) {
-        //console.log(msg);
         console.log(msg.id);
 
-        $('#dietTitleEdit').val(msg.title);
-        $('#dateFromEdit').val(msg.dateFrom);
-        $('#dateToEdit').val(msg.dateTo);
+        $('#dietTitle').val(msg.title);
+        $('#dateFrom').val(msg.dateFrom);
+        $('#dateTo').val(msg.dateTo);
+        $("#DietModal .modal-footer").html('\
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
+            <button type="button" class="btn btn-primary" onclick="editDiet('+id+')">Zapisz zmiany</button>\
+            <button type="button" class="btn btn-primary" onclick="deleteDiet()">Usuń</button>\
+        ')
     })
     .fail(function () {
         toastr.error('Wystąpił błąd');
@@ -40,7 +39,6 @@ const selectDiet = (id) =>{
 }
 
 /// Add Diet ///
-
 const addDiet = () => {
     var title = $('#dietTitle').val();
     var dateFrom = $('#dateFrom').val();
@@ -60,9 +58,8 @@ const addDiet = () => {
             processData:false,
         })
         .done(function (msg) {
-            console.log(msg);
             cleanInputs();
-            $("#addDietModal").modal("hide");
+            $("#DietModal").modal("hide");
         })
         .fail(function () {
             console.log("Wystąpił błąd");
@@ -70,11 +67,10 @@ const addDiet = () => {
 }
 
 /// Edit Diet ///
-
 const editDiet = (id) => {
-    var title = $('#dietTitleEdit').val();
-    var dateFrom = $('#dateFromEdit').val();
-    var dateTo = $('#dateToEdit').val();
+    var title = $('#dietTitle').val();
+    var dateFrom = $('#dateFrom').val();
+    var dateTo = $('#dateTo').val();
 
     var form_data = new FormData();
     form_data.append("_token",$("#_token").val());
@@ -91,11 +87,19 @@ const editDiet = (id) => {
             processData:false,
         })
         .done(function (msg) {
-            console.log(msg);
             cleanInputs();
-            $("#addDietModal").modal("hide");
+            $("#DietModal").modal("hide");
         })
         .fail(function () {
             console.log("Wystąpił błąd");
         });
+}
+
+/// Edit modal ///
+const addModal =()=>{
+    $("#DietModal .modal-footer").html('\
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
+        <button type="button" class="btn btn-primary" onclick="addDiet()">Zapisz zmiany</button>\
+    ');
+    cleanInputs();
 }

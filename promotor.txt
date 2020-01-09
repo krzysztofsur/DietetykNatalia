@@ -1,0 +1,54 @@
+choroby i alerige czy da się wykluczyć posiłki po id
+
+
+diata ilość dni * dieta dzień (tablica json)
+
+
+czy wystarczy?
+//////////////
+/// ToDo: ///
+////////////
+
+  diets:
+    -refersh
+    -edit
+    -add dietD
+    -show
+
+  dietD:
+    -DB migration
+    -add table 
+    -dodawanie posiłku/produktu (modal)
+
+  meals:
+    -ingridians edit
+    -ingridians delete
+
+
+[śniadanie:{
+  posiłek:
+  zjadło:
+},
+ ]
+
+jwt
+Authorization: Basic
+Authorization: Bearer
+
+JSON web token 
+auth 
+https://www.w3resource.com/mysql/comparision-functions-and-operators/not-in.php
+
+/////////////////
+/// End ToDo ///
+///////////////
+
+
+PRACA:
+jake jest min
+opis użytych technologii: 1 na max pół str?
+program: 
+    po zakładkach menu ss i 2-3 zdania opisu do funkcji? 
+    edit add delete itp? 
+    ss na 1/3 str?
+    30 str?

@@ -8,6 +8,10 @@ class Diets extends Model
 {
     public function user()
     {
-            return $this->belongsTo('App\User', 'userid','id');
-    } 
+        return $this->belongsTo('App\User', 'userid','id');
+    }
+    public function dietDays()
+    {
+        return $this->hasMany('App\DietDays', 'dietid');
+    }
 }

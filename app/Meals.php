@@ -8,6 +8,6 @@ class Meals extends Model
 {
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'products_has_meals', 'meal_id', 'product_id')->withPivot('weight','unit')->withTimestamps();
+        return $this->belongsToMany(Product::class, 'products_has_meals', 'meal_id', 'product_id')->withPivot('weight','unit','id')->withTimestamps();
     }
 }

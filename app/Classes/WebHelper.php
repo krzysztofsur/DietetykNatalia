@@ -37,4 +37,18 @@ class WebHelper{
         }
         return $resoult/100;
     }
+    public function mealsTable($type)
+    {
+        switch ($type) {
+            case 'test':
+                return "test";
+                break;
+            case 'value':
+                return "value";
+                break;
+            default:
+                # code...
+                break;
+        }
+    }
 }

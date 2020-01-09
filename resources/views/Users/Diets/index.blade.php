@@ -9,7 +9,7 @@
 
 @section('main')
 <div class="row m-b-10">
-    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addDietModal" onclick="cleanInputs()">
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#DietModal" onclick="addModal()">
         add
     </button>
 </div>
@@ -33,7 +33,7 @@
                 <td>{{ $diet->dateTo}}</td>
 
                 <td>
-                    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#editDietModal" onclick="selectDiet({{ $diet->id }})">Edit</button>
+                    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#DietModal" onclick="selectDiet({{ $diet->id }})">Edit</button>
                 </td>
                 <td>
                     <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/userList/{{ $idUser }}/diet/{{ $diet->id }}'">Szczegóły</button>
@@ -48,8 +48,8 @@
 </div>
 
 
-<!-- Add Modal -->
-<div class="modal fade" id="addDietModal" tabindex="-1" role="dialog"
+<!-- Modal -->
+<div class="modal fade" id="DietModal" tabindex="-1" role="dialog"
 aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
@@ -86,50 +86,7 @@ aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
   </div>
 </div>
 </div>
-<!-- Add Modal End -->
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editDietModal" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle2">Edytuj Diete</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-        <div class="m-b-10">
-            <label for="dietTitleEdit">Tytuł</label>
-            <input type="text" class="form-control" id="dietTitleEdit">
-        </div>
-        <div>
-            <label for="range_data_edit">Zakres dat</label>
-            <div class="input-daterange input-group" id="range_data">
-                <div class="form-line">
-                    <input type="text" id="dateFromEdit" class="form-control" placeholder="Date start...">
-                </div>
-                <span class="input-group-addon">do</span>
-                <div class="form-line">
-                    <input type="text" id="dateToEdit" class="form-control" placeholder="Date end...">
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-      <button type="button" class="btn btn-primary" onclick="editDiet()">Zapisz zmiany</button>
-      <button type="button" class="btn btn-primary" onclick="deleteDiet()">Usuń</button>
-    </div>
-  </div>
-</div>
-</div>
-<!-- Edit Modal End -->
-
-
+<!-- Modal End -->
 
 @endsection
 

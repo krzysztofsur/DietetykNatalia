@@ -42,7 +42,7 @@
         </tbody>
       </table>
       
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addIngredientModal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#IngredientModal" onclick="modalAdd()">
         add
       </button>
 
@@ -56,61 +56,8 @@
       </div>
     </div>
 
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addIngredientModal">
-      addIngredientModal
-    </button>
-
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editIngredientModal" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            
-            <input type="hidden" id="ingredientIdEdit">
-            <label for="product">Lista produktów</label>
-            <input type="text" class="form-control" id="product_searchEdit" oninput="refreshProductListEdit()" placeholder="Szukaj...">
-            <select class="form-control show-tick" onchange="refreshProductListEdit()" id="product_search_categoryEdit">
-                    <option value="0">Wybierz kategorię</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id}}">{{ $category->name}}</option>
-                @endforeach
-            </select>
-            <br/>
-            <select multiple class="form-control" id="productEdit">
-                @foreach ($products as $product)
-                <option value="{{ $product->id}}">{{ $product->name}}</option>
-                @endforeach
-            </select>
-
-            <div class="row">
-              <label for="mealRecipe">Ilość</label>
-              <input type="number" class="form-control" id="productWeightEdit" value="0">
-            </div>
-
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="button" class="btn btn-primary" onclick="deleteIngredient()">Usuń</button>
-            <button type="button" class="btn btn-primary" onclick="editIngredient()">Zapisz</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Modal End -->
-
-
     <!-- Add Modal -->
-    <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog"
+    <div class="modal fade" id="IngredientModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -138,7 +85,7 @@
             </select>
 
             <div class="row">
-              <label for="mealRecipe">Ilość</label>
+              <label for="productWeight">Ilość</label>
               <input type="number" class="form-control" id="productWeight" value="0">
             </div>
 

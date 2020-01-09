@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Meals;
+use App\Product;
 use App\ProductsHasMeals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,13 +41,12 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        // if ($request->ajax()) {
-        // $meal = new Meals();
-        // $meal->name = $request->name;
-        // $meal->save();
-        // return $meal->id;
-        // };
-        return 1;
+        if ($request->ajax()) {
+        $meal = new Meals();
+        $meal->name = $request->name;
+        $meal->save();
+        return $meal->id;
+        };
     }
 
     /**
@@ -129,14 +129,17 @@ class MealController extends Controller
         };
     }
 
-    public function editIngredient(Request $request)
+    public function editIngredient(Request $request,$id)
     {
-        return "(^.^)";
+        $edit = ProductsHasMeals::find($id);
+        $edit->product_id=$request->productId;
+        $edit->weight=$request->weight;
+        $edit->save();
     }
 
-    public function deleteIngredient(Request $request)
+    public function deleteIngredient($id)
     {
-        ProductsHasMeals::find($request->id)->delete();
+        ProductsHasMeals::find($id)->delete();
     }
 
     public function showIngredient($id)
@@ -147,13 +150,21 @@ class MealController extends Controller
             "name"=> "",
             "weight"=>1,
             "unit"=>"",
+            "id"=>1
         ];
         foreach ($meal->products as $product){
             $tmparr["name"]=$product->name;
             $tmparr["weight"]=$product->pivot->weight;
             $tmparr["unit"]=$product->pivot->unit;
+            $tmparr["id"]=$product->pivot->id;
             array_push($array, $tmparr);
         };
         return $array;
+    }
+    public function selectIngredient($id)
+    {
+        $name =Product::find(ProductsHasMeals::find($id)->product_id)->name;
+        return ["weight"=>ProductsHasMeals::find($id)->weight,"name"=>$name];
+
     }
 }
