@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DietDays;
 use App\User;
 use App\Diets;
 use Illuminate\Http\Request;
@@ -47,9 +48,27 @@ class DietsController extends Controller
         $diets->dateTo = $request->dateTo;
         $diets->userid = $idUser;
         $diets->save();
+        $idDiet = $diets->id;
+
+        
+        //$table =\App\Classes\WebHelper::initialization()->mealsTable($request->meals);
 
         $to = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateTo);
         $from = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
+        $date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
+
+        for ($i=0; $i < $to->diffInDays($from); $i++) { 
+            $dietDay = new DietDays();
+            $dietDay->day=$date;
+            $dietDay->table="test";
+            $dietDay->dietid=$idDiet;
+            $dietDay->save();
+            $date->addDays();
+            
+        }
+
+
+
         return $to->diffInDays($from);
         };
     }

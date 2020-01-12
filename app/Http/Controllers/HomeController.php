@@ -31,13 +31,15 @@ class HomeController extends Controller
         //$personalData= $user->personaldata;
         //$name=\App\Classes\WebHelper::initialization()->getGender($personalData->sex);
         $name=100* \App\Classes\WebHelper::initialization()->unitConverter("szczypta");
-        // $to = \Carbon\Carbon::createFromFormat('Y-m-d', '2015-5-5');
+         $to = \Carbon\Carbon::createFromFormat('Y-m-d', '2019-9-30')->addDays();
         // $from = \Carbon\Carbon::createFromFormat('Y-m-d', '2015-5-6');
         // $diff_in_days = $to->diffInDays($from);
         // $name=$diff_in_days; // Output: 1
 
+
+
         //var_dump($tab["test2"]);
-        return view('home',['test' => $name]);
+        return view('home',['test' => $to]);
     }
 
 
