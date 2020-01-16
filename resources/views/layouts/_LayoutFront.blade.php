@@ -34,10 +34,10 @@
 
             <div class="collapse navbar-collapse" id="MainMenu">
                 <div class="navbar-nav float-right text-right pr-3">
-                    <a class="nav-item nav-link" href="/">Home</a>
-                    <a class="nav-item nav-link" href="#">About Us</a>
-                    <a class="nav-item nav-link" href="/FrontUserRequest">Request</a>
-                    <a class="nav-item nav-link" href="/contact">Contakt</a>
+                    <a class="nav-item nav-link" href="/">Strona Główna</a>
+                    <a class="nav-item nav-link" href="#">O Nas</a>
+                    <a class="nav-item nav-link" href="/FrontUserRequest">Zapytaj Nas!</a>
+                    <a class="nav-item nav-link" href="/contact">Kontakt</a>
                     <a class="nav-item nav-link" href="/home">Blog</a>
                 </div>
             </div>

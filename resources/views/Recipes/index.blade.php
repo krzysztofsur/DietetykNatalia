@@ -1,6 +1,6 @@
 @extends('layouts._LayoutPanel')
 <?php $activeMainMenu = 'blog'; ?>
-@section('title','Blog Add')
+@section('title','Blog')
 @section('styles')
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=fqnmeurrl0ry206hcbd9m1dnhcflolt0mbr4u4ye7rvw11gc">
 </script>
@@ -27,7 +27,7 @@
                     <td>{{ $recipe->title}}</td>
                     <td>{{ date('Y-m-d', strtotime($recipe->updated_at))}}</td>
                     <td>
-                        <button class="btn btn-outline-info btn-sm" onclick="blogEdit({{ $recipe->id}})">Edit</button>
+                        <button class="btn btn-outline-info btn-sm" onclick="blogEdit({{ $recipe->id}})">Edycja</button>
                         <button class="btn btn-outline-warning btn-sm" onclick="blogDelete({{ $recipe->id}})">Usuń</button>
                     </td>
                 </tr>
@@ -47,11 +47,11 @@
             <label for="title">Kategoria</label>
             <select class="form-control" id="category">
                 <option value="Przepisy">Przepisy</option>
-                <option value="Cielawostki">Ciekawostki</option>
+                <option value="Ciekawostki">Ciekawostki</option>
             </select>
         </div>
         <div class="row">
-            <label for="short">Short</label>
+            <label for="short">Krótki opis</label>
             <textarea id="short" style="width:100%"></textarea>
         </div>
         <div class="row">
@@ -59,7 +59,7 @@
             <textarea id="description" style="width:100%"></textarea>
         </div>
         <div class="row">
-            Dodaj zdjęcie o wielkości(www na eee)<input type="file" name='file' id="imgs">
+            Dodaj zdjęcie o wielkości <input type="file" name='file' id="imgs">
             <img src="" id="imgs_file">
         </div>
         <div class="row">

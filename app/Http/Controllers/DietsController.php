@@ -18,7 +18,7 @@ class DietsController extends Controller
     public function index($idUser)
     {
         //simplePaginate
-        $diets = Diets::where('userid','=', $idUser)->paginate(2);
+        $diets = Diets::where('userid','=', $idUser)->paginate(20);
         return view('Users.Diets.index', ['idUser'=>$idUser,'diets'=>$diets]);
     }
 
@@ -29,7 +29,7 @@ class DietsController extends Controller
      */
     public function create($idUser)
     {
-        $diets = Diets::where('userid','=', $idUser)->paginate(2);
+        $diets = Diets::where('userid','=', $idUser)->paginate(20);
         return response(['diets'=>$diets]);
     }
 
@@ -57,10 +57,10 @@ class DietsController extends Controller
         $from = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
         $date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
 
-        for ($i=0; $i < $to->diffInDays($from); $i++) { 
+        for ($i=0; $i < $to->diffInDays($from)+1; $i++) { 
             $dietDay = new DietDays();
             $dietDay->day=$date;
-            $dietDay->table="test";
+            $dietDay->table=\App\Classes\WebHelper::initialization()->mealsTable();
             $dietDay->dietid=$idDiet;
             $dietDay->save();
             $date->addDays();
@@ -79,7 +79,7 @@ class DietsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idUser ,$id)
     {
         //
     }
@@ -109,7 +109,39 @@ class DietsController extends Controller
         $diet->dateTo = $request->dateTo;
         $diet->dateFrom = $request->dateFrom;
         $diet->save();
+        
+
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateTo);
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
+        $date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
+
+        $size=sizeof($diet->dietDays);
+        $diff_in_days = $to->diffInDays($from)+1;
+
+        if($size<$diff_in_days){
+            for ($i=0; $i < $diff_in_days-$size; $i++) { 
+                $dietDay= new DietDays();
+                $dietDay->day=$date;
+                $dietDay->table=\App\Classes\WebHelper::initialization()->mealsTable();
+                $dietDay->dietid=$id;
+                $dietDay->save();
+            }
+        }else{
+            for ($i=$diff_in_days; $i < $size; $i++) { 
+                $diet->dietDays[$i]->delete();
+            }
+        }
+        $diet = Diets::find($id);
+        foreach ($diet->dietDays as $dietDay){
+            $dietDay1 = DietDays::find($dietDay->id);
+            $dietDay1->day=$date;
+            $dietDay1->table=\App\Classes\WebHelper::initialization()->mealsTable();
+            $dietDay1->dietid=$id;
+            $dietDay1->save();
+            $date->addDays();
+        };
         return $id;
+
     }
 
     /**
@@ -118,13 +150,16 @@ class DietsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idUser, $id)
     {
-        //
+        $diet = Diets::find($id);
+        foreach ($diet->dietDays as $dietDay){
+            $dietDay->delete();
+        };
+        $diet->delete();
     }
     public function select($idUser,$id)
     {
-        //return $id;
         return Diets::find($id);
     }
 }

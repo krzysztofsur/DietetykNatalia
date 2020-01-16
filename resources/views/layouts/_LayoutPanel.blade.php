@@ -67,7 +67,7 @@
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="../../index.html">ADMINBSB - MATERIAL DESIGN</a>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
+            {{-- <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Notifications -->
                     <li class="dropdown">
@@ -170,7 +170,7 @@
                     <!-- #END# Tasks -->
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </nav>
     <!-- #Top Bar -->
@@ -211,11 +211,11 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header ">Menu</li>
                     <li>
                         <a href="/home">
                             <i class="material-icons">home</i>
-                            <span>Home</span>
+                            <span>Strona Główna</span>
                         </a>
                     </li>
                     <li>
@@ -227,7 +227,7 @@
                     <li>
                         <a href="/products">
                             <i class="material-icons">cake</i>
-                            <span>Products</span>
+                            <span>Produkty</span>
                         </a>
                     </li>
                     <li>
@@ -240,69 +240,19 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">person</i>
-                            <span>Users</span>
+                            <span>Użytkownicy</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="/userList">User List</a>
+                                <a href="/userList">Lista</a>
                             </li>
                             <li>
-                                <a href="/userRequest">Request</a>
+                                <a href="/userRequest">Zapytania</a>
                             </li>
                             <li>
-                                <a href="/createUser">Create User</a>
+                                <a href="/createUser">Dodaj nowego</a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_media</i>
-                            <span>Medias</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="../../pages/medias/image-gallery.html">Image Gallery</a>
-                            </li>
-                            <li>
-                                <a href="../../pages/medias/carousel.html">Carousel</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_copy</i>
-                            <span>Example Pages</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="../../pages/examples/blank.html">Blank Page</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../changelogs.html">
-                            <i class="material-icons">update</i>
-                            <span>Changelogs</span>
-                        </a>
-                    </li>
-                    <li class="header">LABELS</li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-red">donut_large</i>
-                            <span>Important</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-amber">donut_large</i>
-                            <span>Warning</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span>Information</span>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -317,7 +267,7 @@
         </aside>
         <!-- #END# Left Sidebar -->
         <!-- Right Sidebar -->
-        <aside id="rightsidebar" class="right-sidebar">
+        {{-- <aside id="rightsidebar" class="right-sidebar">
             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                 <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
                 <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
@@ -457,7 +407,7 @@
                     </div>
                 </div>
             </div>
-        </aside>
+        </aside> --}}
         <!-- #END# Right Sidebar -->
     </section>
 

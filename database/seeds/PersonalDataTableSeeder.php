@@ -14,20 +14,20 @@ class PersonalDataTableSeeder extends Seeder
     {
         $personaldata = new PersonalData();
         $personaldata->userid = '1';
-        $personaldata->firstname = 'Katka';
-        $personaldata->lastname = 'Gaweł';
-        $personaldata->phone = '111111111';
+        $personaldata->firstname = 'Katarzyna';
+        $personaldata->lastname = 'Gawłowska';
+        $personaldata->phone = '510456754';
         $personaldata->sex = 'female';
-        $personaldata->birthdate = '2011-11-11';
+        $personaldata->birthdate = '1997-12-11';
         $personaldata->save();
 
         $personaldata = new PersonalData();
         $personaldata->userid = '2';
-        $personaldata->firstname = 'Katka2';
-        $personaldata->lastname = 'Gaweł2';
-        $personaldata->phone = '111111111';
-        $personaldata->sex = 'female';
-        $personaldata->birthdate = '2011-11-11';
+        $personaldata->firstname = 'Stanisław';
+        $personaldata->lastname = 'Kowalski';
+        $personaldata->phone = '840578345';
+        $personaldata->sex = 'male';
+        $personaldata->birthdate = '1960-11-11';
         $personaldata->save();
 
     }

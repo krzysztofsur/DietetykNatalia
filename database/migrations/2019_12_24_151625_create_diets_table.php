@@ -17,6 +17,7 @@ class CreateDietsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('userid')->unsigned();
             $table->string('title', 200);
+            $table->boolean('confirmed')->default(false);
             $table->date('dateFrom');
             $table->date('dateTo');
             $table->timestamps();

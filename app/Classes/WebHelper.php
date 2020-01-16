@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Classes;
-
+class mealObj{};
 class WebHelper{
     public static function initialization()
     {
@@ -37,18 +37,26 @@ class WebHelper{
         }
         return $resoult/100;
     }
-    public function mealsTable($type)
+    public function mealsTable()
     {
-        switch ($type) {
-            case 'test':
-                return "test";
-                break;
-            case 'value':
-                return "value";
-                break;
-            default:
-                # code...
-                break;
-        }
+        $arr= array();
+        $meal1Obj = new mealObj();
+        $meal2Obj = new mealObj();
+        $meal3Obj = new mealObj();
+        $meal4Obj = new mealObj();
+        $meal1Obj->name='Sniadanie';
+        $meal2Obj->name='Obiad';
+        $meal3Obj->name='Podwieczorek';
+        $meal4Obj->name='Kolacja';
+        $meal1Obj->meals=array();
+        $meal2Obj->meals=array();
+        $meal3Obj->meals=array();
+        $meal4Obj->meals=array();
+        array_push($arr,$meal1Obj);
+        array_push($arr,$meal2Obj);
+        array_push($arr,$meal3Obj);
+        array_push($arr,$meal4Obj);
+        $jsonE = json_encode($arr);
+        return $jsonE;
     }
 }

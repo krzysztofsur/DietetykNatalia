@@ -30,7 +30,7 @@ const selectDiet = (id) =>{
         $("#DietModal .modal-footer").html('\
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
             <button type="button" class="btn btn-primary" onclick="editDiet('+id+')">Zapisz zmiany</button>\
-            <button type="button" class="btn btn-primary" onclick="deleteDiet()">Usuń</button>\
+            <button type="button" class="btn btn-primary" onclick="deleteDiet('+ id +')">Usuń</button>\
         ')
     })
     .fail(function () {
@@ -59,6 +59,7 @@ const addDiet = () => {
         })
         .done(function (msg) {
             cleanInputs();
+            refreshList()
             $("#DietModal").modal("hide");
         })
         .fail(function () {
@@ -87,6 +88,7 @@ const editDiet = (id) => {
             processData:false,
         })
         .done(function (msg) {
+            refreshList();
             cleanInputs();
             $("#DietModal").modal("hide");
         })
@@ -95,11 +97,56 @@ const editDiet = (id) => {
         });
 }
 
-/// Edit modal ///
+/// Add modal ///
 const addModal =()=>{
     $("#DietModal .modal-footer").html('\
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>\
         <button type="button" class="btn btn-primary" onclick="addDiet()">Zapisz zmiany</button>\
     ');
     cleanInputs();
+}
+
+/// Delete meal ///
+const deleteDiet= (id) =>{
+    var _token = $("#_token").val();
+    var data={
+        url: window.location.href+'/'+id,
+        data: {
+            "_token": _token,
+            "id": id
+        },
+        ifDone: function() { 
+            cleanInputs();
+            $("#DietModal").modal("hide");
+            refreshList()
+        },
+    };
+    ajax_delete(data);  
+}
+const refreshList=()=> {
+    $.ajax({
+        method: "get",
+        url: window.location.href+'/create',
+        
+    })
+        .done(function (msg) {
+            $('#diet_list').html("");
+            
+            msg.diets.data.forEach(element => {
+                $('#diet_list').append('<tr>\
+                    <td>'+element.title+'</td>\
+                    <td>'+element.dateFrom+'</td>\
+                    <td>'+element.dateTo+'</td>\
+                    <td>\
+                    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#DietModal" onclick="selectDiet('+element.id +')">Edit</button>\
+                </td>\
+                <td>\
+                    <a class="btn btn-outline-info btn-sm" href="'+window.location.href+'/'+element.id+"/dietDays"+'">Szczegóły</a>\
+                </td>\
+                </tr>');
+            });
+        })
+        .fail(function () {
+            toastr.error('Wystąpił błąd');
+        });
 }

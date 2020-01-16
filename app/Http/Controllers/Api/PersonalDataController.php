@@ -28,11 +28,10 @@ class PersonalDataController extends Controller
         $PersonalData = PersonalData::where('userid', $id)->first();
 
         $PersonalData -> firstname =  $request->firstname;
-        //$PersonalData -> lastname =$request->lastname;
-        //$PersonalData -> phone = $request->phone;
-        //$PersonalData-> email = $request->email;
-        $PersonalData -> sex = 'female';
-        //$PersonalData -> birthdate = $request->birthdate;
+        $PersonalData -> lastname =$request->lastname;
+        $PersonalData -> phone = $request->phone;
+        //$PersonalData -> sex = 'female';
+        $PersonalData -> birthdate = $request->birthdate;
         $PersonalData->save();
         return response(['user'=>$PersonalData]);
     }

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DietDays;
+use App\Diets;
+use App\Meals;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
+class addObj{};
 class DietDaysController extends Controller
 {
     /**
@@ -11,9 +16,11 @@ class DietDaysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($idUser,$idDiet)
     {
-        echo "działa";
+        $diets = Diets::find($idDiet)->dietDays;
+        
+        return view('Users.DietDays.index', ['idUser'=>$idUser,'diets'=>$diets]);
     }
 
     /**
@@ -21,9 +28,18 @@ class DietDaysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idUser,$idDiet, $id)
     {
-        //
+
+        // $diet = DietDays::find($id);
+        // $json=json_decode($diet->table);
+        // foreach ($json as $keys) {
+        //     foreach($keys->meals as $key){
+        //         $key->meal= Meals::find($key->id);
+        //         echo $key->meal->name;
+        //     }
+        // }
+        // return response(['diet'=>$diet]);
     }
 
     /**
@@ -36,16 +52,33 @@ class DietDaysController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idUser,$idDiet, $id)
     {
-        //
+        $meals = DB::table('meals')->take(100)->get();
+        $diet = DietDays::find($id);
+        $json=json_decode($diet->table);
+        foreach ($json as $keys) {
+            foreach($keys->meals as $key){
+                $key->meal= Meals::find($key->id);
+                echo $key->meal->name;
+            }
+        }
+        $i=0;
+        return view('Users.DietDays.show', [
+            'diet'=>$json,
+            'meals'=>$meals,
+            'i'=>$i,
+            'idUser'=>$idUser,
+            'idDiet'=>$idDiet,
+            'id'=>$id
+            ]);
+
     }
 
     /**
@@ -68,7 +101,14 @@ class DietDaysController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $diet = DietDays::find($request->id);
+        $json=json_decode($diet->table);
+        $objadd = new addObj(); 
+        $objadd->id=$request->id_meal;
+        array_push($json[$request->id_table]->meals, $objadd);
+        $diet->table=json_encode($json);
+        $diet->save();
+        return "(^.^)";
     }
 
     /**

@@ -35,7 +35,7 @@ Route::group([
     Route::resource('userList', 'UserListController');
     Route::resource('userList/{idUser}/diet', 'DietsController');
     Route::get('userList/{idUser}/diet/select/{id}', 'DietsController@select');
-    Route::resource('userList/{idUser}/dietDays', 'DietDaysController');
+    Route::resource('userList/{idUser}/diet/{idDiet}/dietDays', 'DietDaysController');
     
     /// Meal ///
     Route::resource('meal', 'MealController');

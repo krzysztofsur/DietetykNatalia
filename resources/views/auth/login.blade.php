@@ -37,7 +37,7 @@
             <div class="body">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                         @csrf
-                    <div class="msg">Sign in to start your session</div>
+                    <div class="msg">Zaloguj się</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">mail</i>
@@ -56,7 +56,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                                <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" placeholder="Hasło" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -69,10 +69,10 @@
                         <div class="col-xs-8 p-t-5">
                             <input class="form-check-input filled-in chk-col-pink" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                            <label for="remember">Remember Me</label>
+                            <label for="remember">Zapamiętaj mnie</label>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">Zaloguj</button>
                         </div>
                     </div>
                 </form>

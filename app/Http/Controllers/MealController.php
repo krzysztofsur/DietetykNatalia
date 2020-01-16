@@ -120,7 +120,7 @@ class MealController extends Controller
     public function addIngredient(Request $request)
     {
         if ($request->ajax()){
-            $test="zaqw";
+            $test="g";
             $meal = Meals::find($request->mealId);
 
             $meal->products()->attach($request->productId ,['weight'=>$request->weight, 'unit'=>$test]);

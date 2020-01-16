@@ -1,6 +1,6 @@
 @extends('layouts._LayoutPanel')
 <?php $activeMainMenu = 'blog'; ?>
-@section('title','Request')
+@section('title','Lista Użytkowników')
 @section('styles')
 
 @endsection
@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <td>Imie</td>
-                    <td>Nazwisko</td>
                     <td>Email</td>
+                    <td></td>
                     <td></td>
                 </tr>
             </thead>

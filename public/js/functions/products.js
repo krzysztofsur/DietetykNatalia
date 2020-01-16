@@ -135,7 +135,7 @@ function takeInput(){
     form_data.append("kwasy_nasycone",kwasy_nasycone);
     form_data.append("vitamin_c",vitamin_c);
     form_data.append("blonnik",blonnik);
-    form_data.append("unit",'test');
+    form_data.append("unit",'g');
     return form_data;
 }
 
