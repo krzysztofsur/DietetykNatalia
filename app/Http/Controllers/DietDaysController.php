@@ -66,14 +66,12 @@ class DietDaysController extends Controller
         foreach ($json as $keys) {
             foreach($keys->meals as $key){
                 $key->meal= Meals::find($key->id);
-                echo $key->meal->name;
             }
         }
         $i=0;
         return view('Users.DietDays.show', [
             'diet'=>$json,
             'meals'=>$meals,
-            'i'=>$i,
             'idUser'=>$idUser,
             'idDiet'=>$idDiet,
             'id'=>$id
@@ -117,8 +115,14 @@ class DietDaysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        // $diet = DietDays::find($id);
+        // $json=json_decode($diet->table);
+
+        // unset($json[$request->i]->meals[$request->j]);
+        // $diet->table=json_encode($json);
+        // $diet->save();
+        return "i= ".$request->i." j= ".$request->j." id= ".$id;
     }
 }

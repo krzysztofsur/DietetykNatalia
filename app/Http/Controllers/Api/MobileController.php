@@ -10,7 +10,6 @@ use App\Meals;
 use App\Product;
 use Carbon\Carbon;
 
-// [{"name":"Sniadanie","meals":[{"id":"2"},{"id":"2"}]},{"name":"Obiad","meals":[{"id":"3"},{"id":"1"}]},{"name":"Podwieczorek","meals":[{"id":"4"}]},{"name":"Kolacja","meals":[{"id":"4"}]}]
 class tmpObj{}
 class MobileController extends Controller
 {

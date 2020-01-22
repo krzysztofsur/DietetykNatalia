@@ -110,7 +110,6 @@ class DietsController extends Controller
         $diet->dateFrom = $request->dateFrom;
         $diet->save();
         
-
         $to = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateTo);
         $from = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
         $date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dateFrom);
@@ -141,7 +140,6 @@ class DietsController extends Controller
             $date->addDays();
         };
         return $id;
-
     }
 
     /**

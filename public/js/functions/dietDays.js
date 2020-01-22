@@ -1,7 +1,3 @@
-const test = () =>{
-    console.log(window.location.pathname);
-}
-
 /// Refresh list meal ///
 const refreshMealList = () =>{
     var form_data = new FormData();
@@ -75,3 +71,22 @@ const modalAdd=(tableId)=>{
 }
 
 /// delete ///
+const deleteDietDayMeal=(i,j)=>{
+    console.log("i="+i+" j= "+j)
+    var id = $("#idDietD").val();
+    var _token = $("#_token").val();
+
+    var data={
+        url: getUrl()+"/"+id,
+        data: {
+            "_token": _token,
+            "id": id,
+            "i":i,
+            "j":j
+        },
+        ifDone: function() { 
+            console.log(msg)
+        },
+    };
+    ajax_delete(data);
+}

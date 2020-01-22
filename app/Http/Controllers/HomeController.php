@@ -2,24 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\ApiAuths;
 use Illuminate\Http\Request;
 use App\Classes\UserRelationships;
-use App\DietDays;
-use App\Diets;
-use App\Meals;
-use App\User;
+use Carbon\Carbon;
+
 class addObj{};
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -39,14 +30,7 @@ class HomeController extends Controller
         // $name=$diff_in_days; // Output: 1
         
         
-        $diet = DietDays::find(179);
-        $json=json_decode($diet->table);
-        $objadd = new addObj(); 
-        $objadd->id=1;
-        array_push($json[1]->meals, $objadd);
-        print_r($json);
-        $diet->table=json_encode($json);
-        $diet->save();
+
         // foreach ($json as $keys) {
         //     foreach($keys->meals as $key){
         //         echo $key->id;

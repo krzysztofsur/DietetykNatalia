@@ -11,7 +11,7 @@
 <div class="row">
 <input type="hidden" id="idUser" value="{{$idUser}}">
 <input type="hidden" id="idDiet" value="{{$idDiet}}">
-    @foreach ($diet as $items)
+    @foreach ($diet as $keys=>$items)
         <div class="col-sm-12">
             <div class="card">
                 <div class="header">
@@ -19,19 +19,19 @@
                         {{$items->name}}
                     </h2>
                 </div>
-            <div class="body" id="mealsBox_{{$i}}">
+            <div class="body" id="mealsBox_{{$keys}}">
                     <div id="meal">
                         <table style="width:100%">
-                            @foreach ($items->meals as $item)
+                            @foreach ($items->meals as $key=>$item)
                             <tr>
                                 <td>{{$item->meal->name}}</td>
-                                <td><button type="button" class="btn btn-primary">Usuń</button> </td>
+                            <td><button type="button" class="btn btn-primary" onclick="deleteDietDayMeal({{$keys}},{{$key}})">Usuń</button> </td>
                             </tr>
                             @endforeach
                         </table>
                         <br>
                     </div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dietDModal" onclick="modalAdd({{$i++}})">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dietDModal" onclick="modalAdd({{$keys}})">
                         Dodaj posiłek
                     </button>
                     
@@ -40,7 +40,6 @@
         </div>
     @endforeach
 </div>
-
 
 
     <!-- Add Modal -->
