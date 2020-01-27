@@ -51,9 +51,16 @@ class AuthController extends Controller
 
         return response(['user'=> auth()->user(), 'access_token'=>$accessToken]); 
    }
-   public function test()
+   public function test(Request $request)
    {
-        return response("tubfd");
+       //$today =Carbon::today();
+       //$headers = apache_request_headers();
+       $header = $request->header('token');
+       //$tmp=ApiAuths::where('token','=', $request->token)->where('date','=', $today)->first();
+       if($header=="zaq"){
+    };
+    return response('tyu');
+    
    }
 
    public function logowanie(Request $request)
